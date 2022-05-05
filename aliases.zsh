@@ -1,0 +1,63 @@
+#Bookmarks
+alias ics="cd /mnt/c/Users/larry/nyu/ics"
+alias fin="cd /mnt/c/Users/larry/fin_analysis"
+alias stats="cd /mnt/c/Users/larry/nyu/stats"
+alias life="cd /mnt/c/Users/larry/life_design"
+alias wai="cd /mnt/c/Users/larry/nyu/WAI"
+#alias ob6="~/.config/zsh"
+#alias ob7="~/.config/nvim"
+alias home="cd /mnt/c/Users/larry"
+
+# Files Shortcuts
+alias zshrc="cd ~/.config/zsh"
+alias nvimrc="cd ~/.config/nvim"
+alias up3="cd /mnt/c/Users/larry/nyu/ics/UP3"
+alias maps="cd /mnt/c/Users/larry/keymaps"
+alias down='cd /mnt/c/Users/larry/Downloads'
+alias doc='cd /mnt/c/Users/larry/OneDrive/Documents'
+alias desk='cd /mnt/c/Users/larry/OneDrive/Desktop'
+
+# Executables
+alias excel="excel.exe"
+alias word="winword.exe"
+alias brave="brave.exe"
+alias pdf="SumatraPDF.exe"
+alias obsidian="Obsidian.exe"
+alias explore="explorer.exe"
+alias fzf="fzf.exe"
+alias wt="pwsh wt.exe"
+alias lg="lazygit"
+
+# Run Files
+alias ahk="Autohotkey.exe"
+alias py="python3"
+
+# Commands
+alias cl="clear"
+alias cf="cfile"
+alias so="source ~/.config/zsh/.zshrc"
+#alias tc="touch"
+alias md="mkdir"
+alias rd="rmdir"
+alias pwsh="powershell.exe"
+alias startup="pwsh -File func.ps1"
+alias al="alias"
+
+# New Aliases
+alias myip='curl http://ipecho.net/plain; echo'
+alias distro='cat /etc/*-release'
+
+# Git
+alias gb='gbranch'
+alias gc='gcheck'
+alias gadd='git add'
+alias gcom='git commit'
+alias gclone='git clone'
+alias glog='git log'
+alias gadd= 'git add'
+alias grad='git remote add origin'
+alias gmerge= 'git merge'
+alias github= 'brave.exe "https://github.com/larry-lime"' 
+alias git_learn='cd /mnt/c/Users/larry/nyu/ics/git_learn'
+alias gtoken='nvim "/mnt/c/Users/larry/nyu/ics/git_learn/token.txt"'
+alias git_del='rm -rf .git'
