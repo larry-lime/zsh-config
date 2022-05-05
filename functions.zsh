@@ -60,7 +60,7 @@ function ii(){
 
 
 # Write a function that adds file contents to the clipboard
-function cfile(){
+function ccont(){
     # Function to add file contents to the clipboard
     if [ -f "$1" ]; then
         CLIP=$(cat $1)
@@ -68,6 +68,11 @@ function cfile(){
     else
         echo "File does not exist"
     fi
+}
+function cfile ()
+{
+    CLIP=$(realpath $1)
+    echo $CLIP | tr "\n" " " | clip.exe 
 }
 
 function yy()
@@ -203,18 +208,6 @@ function vimclock(){
     nvim -c ":Calendar -view=clock"
 }
 
-# Project Testing
-function ups()
-{
-    cd /mnt/c/Users/larry/nyu/ics/UP3/
-    python3 /mnt/c/Users/larry/nyu/ics/UP3/chat_server.py
-}
-function upc()
-{
-    cd /mnt/c/Users/larry/nyu/ics/UP3/
-    python3 /mnt/c/Users/larry/nyu/ics/UP3/chat_cmdl_client.py
-}
-
 #function copy_toke()
 #{
     #'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' | clip.exe
@@ -280,16 +273,19 @@ function github()
     brave.exe 'https://github.com/larry-lime'
 }
 
+function test()
+{
+    var=$(echo $1 | tr "/" "\n")
+}
 function git_start()
 {
     # Copy Token
     TOKEN=$(cat /mnt/c/Users/larry/nyu/ics/git_learn/token.txt)
     echo $TOKEN | tr -d '[:space:]' | clip.exe 
-    #echo "# python-fin-analysis" >> README.md
-    touch README.md
+    #echo "# README Title" >> README.md
     git init
-    git add README.md
-    git commit -m "first commit"
+    #git add README.md
+    #git commit -m "first commit"
     git branch -M main
     git remote add origin $1
     git push -u origin main
