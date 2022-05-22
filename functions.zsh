@@ -36,7 +36,8 @@ function ii(){
     CHECK="${FILE##*.}"
 
     if [ "$CHECK" = "md" ]; then
-        nvim $FILE
+        nvim $FILE -c ":call FocusUpToggle()"
+        #nvim -c ":Calendar"
     elif [ "$CHECK" = "pdf" ]; then
         SumatraPDF.exe $FILE
     elif [ "$CHECK" = "docx" ]; then
@@ -44,6 +45,8 @@ function ii(){
     elif [ "$CHECK" = "html" ]; then
         brave.exe $FILE
     elif [ "$CHECK" = "xslx" ]; then
+        excel.exe $FILE
+    elif [ "$CHECK" = "xlsm" ]; then
         excel.exe $FILE
     elif [ "$CHECK" = "xlsx" ]; then
         excel.exe $FILE
@@ -103,11 +106,12 @@ function camelcase(){
     echo $1 | sed -r 's/([A-Z])/ \1/g' | sed -r 's/^.//'
 }
 
-function journal(){
+function journal()
+{
     cd /mnt/c/Users/larry/OneDrive/Documents/'Journal Entries'
     DATE=$(date +%F)
     FILE="journal_entry_${DATE}.md"
-    if test -f "$FILE"; then
+    if [[ -f "$FILE" ]]; then
         nvim $FILE
     else
         touch $FILE
@@ -116,44 +120,56 @@ function journal(){
     fi
 }
 
-# Create and open a todo list in the to_do directory
+function proj()
+{
+    cd "/mnt/c/Users/larry/life_design/Projects/"
+    nvim "projects.md"
+}
+
+function stodo(){
+    DATE=$(date +%F)
+    FILE="todo_${DATE}.md"
+    VAR="/mnt/c/Users/larry/life_design/to_do/$FILE"
+    if [[ -f "$VAR" ]]; then
+        glow $VAR
+    else
+        echo "Today's todo has not been created yet"
+    fi
+}
+
 function todo(){
     cd /mnt/c/Users/larry/life_design/to_do
     DATE=$(date +%F)
     FILE="todo_${DATE}.md"
-    if test -f "$FILE"; then
+    if [[ -f "$FILE" ]]; then
         nvim $FILE
     else
         touch $FILE
-        echo "# Daily To-Do ${DATE}\n
-------------\n\
+        echo "# Daily To-Do ${DATE}
+\n\
 ## ACADEMICS\n\
-------------\n\
 \n\
 ### ICS\n\
-- [ ] \n
+- [ ] \n\
 \n\
 ### STATS\n\
-- [ ] \n 
+- [ ] \n\
 \n\
 ### PSYCH\n\
 - [ ] \n\
 \n\
 ### WAI\n\
-- [ ] \n
-------------------\n\
+- [ ] \n\
+\n\
 ## CAREER\n\
-------------------\n\
-- [ ]\n\
-------------------\n\
+- [ ] \n\
+\n\
 ## EXTRACURRICULAR\n\
-------------------\n\
-- [ ]\n\
-------------------\n\
+- [ ] \n\
+\n\
 ## OTHER\n\
-------------------\n\
-- [ ]\n\
-            " >> $FILE
+- [ ] \n\
+        " >> $FILE
         nvim $FILE
     fi
 }
@@ -243,10 +259,14 @@ function gpush()
     git push -u origin $1
 }
 
-#function gclone()
-#{ 
-    #git clone $1
-#}
+function cpode ()
+{
+    powershell.exe -c "code $1"
+}
+function jlab()
+{
+    powershell.exe -c "conda activate ; jupyter-lab $1"
+}
 
 function gcom()
 { 
@@ -268,11 +288,6 @@ function gmerge()
     git merge $1
 }
 
-function github()
-{
-    brave.exe 'https://github.com/larry-lime'
-}
-
 function test()
 {
     var=$(echo $1 | tr "/" "\n")
@@ -282,12 +297,61 @@ function git_start()
     # Copy Token
     TOKEN=$(cat /mnt/c/Users/larry/nyu/ics/git_learn/token.txt)
     echo $TOKEN | tr -d '[:space:]' | clip.exe 
-    #echo "# README Title" >> README.md
+    echo "# README Title" >> README.md
     git init
-    #git add README.md
-    #git commit -m "first commit"
+    git add README.md
+    git commit -m "first commit"
     git branch -M main
     git remote add origin $1
     git push -u origin main
 }
+function gopen {
+    gbrowsevar=$(git config --get remote.origin.url)
+    printf "${gbrowsevar}"
+    brave.exe $gbrowsevar
+}
+function lg ()
+{
+    TOKEN=$(cat /mnt/c/Users/larry/nyu/ics/git_learn/token.txt)
+    echo $TOKEN | tr -d '[:space:]' | clip.exe 
+    lazygit
+}
 
+function chat_system ()
+{
+    cd /mnt/c/Users/larry/nyu/ics/final_project/chat_system
+}
+
+function chat_client ()
+{
+    cd /mnt/c/Users/larry/nyu/ics/final_project/chat_system
+    nvim chat_client_class.py
+}
+
+function btm ()
+{ 
+    powershell.exe -c "btm"
+}
+function ngstart()
+{
+    powershell.exe -c "ngrok tcp --region jp $1"
+
+}
+
+function nv()
+{
+    if [ $# -eq 0 ]; then
+        nvim -c ":NERDTree"
+    else
+        nvim $1
+    fi
+}
+
+
+#alias nv="nvim"
+#function ide ()
+#{
+    #tmux split-window -v -p 30
+    #tmux split-window -h -p 66
+    #tmux split-window -h -p 50
+#}

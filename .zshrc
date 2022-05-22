@@ -12,10 +12,13 @@ autoload -Uz colors && colors
 zstyle ':completion:*' menu select
 
 source "$ZDOTDIR/functions.zsh"
+# Source Files
+#source "/home/larrylime/.config/zsh/final_project_testing.zsh "
 
 zsh_add_file "prompt.zsh"
 zsh_add_file "vim-mode.zsh"
 zsh_add_file "aliases.zsh"
+zsh_add_file "final_project_testing.zsh"
 
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
@@ -56,3 +59,7 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 #figlet utility to convert normal text to ASCII art
 #figlet -cl "larrylime"
+#/home/larrylime/.yarn/bin
+#warning: be sure to add `/home/larrylime/.cargo/bin` to your PATH to be able to run the installed binaries
+PATH="$PATH:/home/larrylime"
+PATH="$PATH:/home/larrylime/.cargo/bin"

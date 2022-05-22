@@ -11,13 +11,12 @@ alias home="cd /mnt/c/Users/larry"
 # Files Shortcuts
 alias zshrc="cd ~/.config/zsh"
 alias nvimrc="cd ~/.config/nvim"
-alias up3="cd /mnt/c/Users/larry/nyu/ics/UP3"
 alias maps="cd /mnt/c/Users/larry/keymaps"
 alias down='cd /mnt/c/Users/larry/Downloads'
 alias doc='cd /mnt/c/Users/larry/OneDrive/Documents'
 alias desk='cd /mnt/c/Users/larry/OneDrive/Desktop'
 
-# Executables
+# Applications
 alias excel="excel.exe"
 alias word="winword.exe"
 alias brave="brave.exe"
@@ -26,7 +25,12 @@ alias obsidian="Obsidian.exe"
 alias explore="explorer.exe"
 alias fzf="fzf.exe"
 alias wt="pwsh wt.exe"
-alias lg="lazygit"
+alias mark="pwsh MarkText.exe"
+alias zoom="Zoom.exe"
+#alias nv="nvim"
+alias ger="ranger"
+alias t="trans"
+alias tt="ttyper"
 
 # Run Files
 alias ahk="Autohotkey.exe"

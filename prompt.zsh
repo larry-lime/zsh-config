@@ -9,6 +9,8 @@ zstyle ':vcs_info:git:*' formats " %{$fg_bold[yellow]%}[%b]"
 setopt PROMPT_SUBST
 #PROMPT='%B%{$fg_bold[red]%}[%n] %{$fg_bold[magenta]%}[%m] %{$fg_bold[cyan]%}[%~] ${vcs_info_msg_0_} %{$fg_bold[white]%} » '
 PROMPT="%B%{$fg_bold[red]%}[%n] %{$fg_bold[cyan]%}[%1d]" 
-PROMPT+="\$vcs_info_msg_0_%{$fg_bold[white]%} » "
+#PROMPT+="\$vcs_info_msg_0_%{$fg_bold[white]%} » "
+PROMPT+="\$vcs_info_msg_0_ » "
+#PROMPT+="\$vcs_info_msg_0_ ⚡"
 #RPS1="%{$fg_bold[white]%}[%m]"
 #PROMPT='%n in ${PWD/#$HOME/~} ${vcs_info_msg_0_} > '
