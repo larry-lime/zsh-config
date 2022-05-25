@@ -1,6 +1,6 @@
 function ups()
 {
-    cd /mnt/c/Users/larry/nyu/ics/final_project/chat_system
+    cd /mnt/c/Users/larry/nyu/ics/final_project
     VAR=chat_server.py
     powershell.exe -c "python3 $VAR"
     #python3 chat_server.py
@@ -8,7 +8,7 @@ function ups()
 
 function upc()
 {
-    cd /mnt/c/Users/larry/nyu/ics/final_project/chat_system
+    cd /mnt/c/Users/larry/nyu/ics/final_project 
     VAR=chat_cmdl_client.py
     powershell.exe -c "python3 $VAR"
     #python3 chat_cmdl_client.py

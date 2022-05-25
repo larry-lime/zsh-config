@@ -297,9 +297,7 @@ function git_start()
     # Copy Token
     TOKEN=$(cat /mnt/c/Users/larry/nyu/ics/git_learn/token.txt)
     echo $TOKEN | tr -d '[:space:]' | clip.exe 
-    echo "# README Title" >> README.md
     git init
-    git add README.md
     git commit -m "first commit"
     git branch -M main
     git remote add origin $1
@@ -319,12 +317,12 @@ function lg ()
 
 function chat_system ()
 {
-    cd /mnt/c/Users/larry/nyu/ics/final_project/chat_system
+    cd /mnt/c/Users/larry/nyu/ics/final_project
 }
 
 function chat_client ()
 {
-    cd /mnt/c/Users/larry/nyu/ics/final_project/chat_system
+    cd /mnt/c/Users/larry/nyu/ics/final_project
     nvim chat_client_class.py
 }
 
@@ -341,7 +339,7 @@ function ngstart()
 function nv()
 {
     if [ $# -eq 0 ]; then
-        nvim -c ":NERDTree"
+        nvim -c ":call LoadSession('lastsession.vim') | :NERDTree"
     else
         nvim $1
     fi
