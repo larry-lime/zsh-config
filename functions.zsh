@@ -1,3 +1,13 @@
+#███████╗██╗░░░██╗███╗░░██╗░█████╗░████████╗██╗░█████╗░███╗░░██╗░██████╗
+#██╔════╝██║░░░██║████╗░██║██╔══██╗╚══██╔══╝██║██╔══██╗████╗░██║██╔════╝
+#█████╗░░██║░░░██║██╔██╗██║██║░░╚═╝░░░██║░░░██║██║░░██║██╔██╗██║╚█████╗░
+#██╔══╝░░██║░░░██║██║╚████║██║░░██╗░░░██║░░░██║██║░░██║██║╚████║░╚═══██╗
+#██║░░░░░╚██████╔╝██║░╚███║╚█████╔╝░░░██║░░░██║╚█████╔╝██║░╚███║██████╔╝
+#╚═╝░░░░░░╚═════╝░╚═╝░░╚══╝░╚════╝░░░░╚═╝░░░╚═╝░╚════╝░╚═╝░░╚══╝╚═════╝░
+
+# -----------------------------------------------------------------
+# Plugins from chris@machine
+# -----------------------------------------------------------------
 function zsh_add_file() {
     # Function to source files if they exist
     [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
@@ -30,8 +40,10 @@ function zsh_add_completion() {
 	if [ "$2" = true ] && compinit "${completion_file:1}"
 }
 
-function oj ()
-{
+# -----------------------------------------------------------------
+# My Custom Z-Shell Commands
+# -----------------------------------------------------------------
+function oj() {
     if [ $# -eq 0 ]; then
         jobs
     else
@@ -39,8 +51,14 @@ function oj ()
     fi
 }
 
-# Invoke-Item 
-function go(){ 
+function take() {
+    mkdir -p -- "$1" &&
+    cd -P -- "$1"
+    echo $(pwd) | tr "\n" " " | clip.exe 
+    CLIP=$(pwd)
+}
+
+function go() {
     FILE=$1
     CHECK="${FILE##*.}"
     if [[ ! -f $1 ]] then
@@ -71,10 +89,11 @@ function go(){
     fi
 }
 
+function ppy() {
+    powershell.exe -c "python3 $1"
+}
 
-# Write a function that adds file contents to the clipboard
-function ccont(){
-    # Function to add file contents to the clipboard
+function ccont() {
     if [ -f "$1" ]; then
         CLIP=$(cat $1)
         echo $CLIP | tr "\n" " " | clip.exe 
@@ -82,26 +101,23 @@ function ccont(){
         echo "File does not exist"
     fi
 }
-function cfile ()
-{
+
+function cfile() {
     CLIP=$(realpath $1)
     echo $CLIP | tr "\n" " " | clip.exe 
 }
 
-function yy()
-{
+function yy() {
     echo $1 | tr "\n" " " | clip.exe 
     CLIP=$1
 }
 
-# Copy pwd to clipboard and assign it to CLIP variable
-function cpath(){
+function cpath() {
     echo $(pwd) | tr "\n" " " | clip.exe 
     CLIP=$(pwd)
 }
 
-# Create and open a markdown file with vim and accept a string as an argument
-function mknote(){
+function mknote() {
     FILE="$1.md"
     if test -f "$FILE"; then
         nvim $FILE
@@ -111,13 +127,12 @@ function mknote(){
         nvim $FILE
     fi
 }
-# Write a function that converts a camel case string to normal text
-function camelcase(){
-    echo $1 | sed -r 's/([A-Z])/ \1/g' | sed -r 's/^.//'
-}
 
-function journal()
-{
+# -----------------------------------------------------------------
+# Personal Plugins
+# -----------------------------------------------------------------
+
+function journal() {
     cd /mnt/c/Users/larry/OneDrive/Documents/'Journal Entries'
     DATE=$(date +%F)
     FILE="journal_entry_${DATE}.md"
@@ -130,13 +145,12 @@ function journal()
     fi
 }
 
-function proj()
-{
+function proj() {
     cd "/mnt/c/Users/larry/life_design/Projects/"
     nvim "projects.md"
 }
 
-function stodo(){
+function stodo() {
     DATE=$(date +%F)
     FILE="todo_${DATE}.md"
     VAR="/mnt/c/Users/larry/life_design/to_do/$FILE"
@@ -147,7 +161,7 @@ function stodo(){
     fi
 }
 
-function todo(){
+function todo() {
     cd /mnt/c/Users/larry/life_design/to_do
     DATE=$(date +%F)
     FILE="todo_${DATE}.md"
@@ -155,37 +169,25 @@ function todo(){
         nvim $FILE
     else
         touch $FILE
-        echo "# Daily To-Do ${DATE}
-\n\
-## ACADEMICS\n\
-\n\
-### ICS\n\
-- [ ] \n\
-\n\
-### STATS\n\
-- [ ] \n\
-\n\
-### PSYCH\n\
-- [ ] \n\
-\n\
-### WAI\n\
-- [ ] \n\
-\n\
-## CAREER\n\
-- [ ] \n\
-\n\
-## EXTRACURRICULAR\n\
-- [ ] \n\
-\n\
-## OTHER\n\
-- [ ] \n\
-        " >> $FILE
+        TEMPLATE="# Daily To-Do ${DATE} \n"
+        TEMPLATE+="\n## ACADEMICS\n"
+        TEMPLATE+="- [ ] \n"
+        TEMPLATE+="\n## WORK\n"
+        TEMPLATE+="- [ ] \n"
+        TEMPLATE+="\n## PERSONAL\n"
+        TEMPLATE+="- [ ] \n"
+        TEMPLATE+="\n## OTHER\n"
+        TEMPLATE+="- [ ] \n"
+        echo "$TEMPLATE" >> $FILE
         nvim $FILE
     fi
 }
 
-# Cowsay: Create eye-catchy splash screen prompts
-function cow(){
+# -----------------------------------------------------------------
+# Terminal Applications & Tools
+# -----------------------------------------------------------------
+
+function cow(){ # Cowsay: Create eye-catchy splash screen prompts
     fortune | cowsay
 }
 
@@ -193,8 +195,7 @@ function dragon(){
     fortune | cowsay -f dragon
 }
 
-#figlet utility to convert normal text to ASCII art
-function user(){
+function user(){ #figlet utility to convert normal text to ASCII art
     figlet -cl "larrylime"
 }
 
@@ -203,96 +204,43 @@ function clip()
     echo $CLIP
 }
 
-function in()
-{
-    cd $1 
-    ls
-}
-
-function take()
-{
-    mkdir -p -- "$1" &&
-    cd -P -- "$1"
-    echo $(pwd) | tr "\n" " " | clip.exe 
-    CLIP=$(pwd)
-}
-
-# Launch calendar.vim directly form terminal
 function vimcal(){
     nvim -c ":Calendar"
 }
 
-# Launch calendar.vim in clock view directly form terminal
 function vimclock(){
     nvim -c ":Calendar -view=clock"
 }
 
-# Pwsh functions
-function ppy
-{
-    powershell.exe -c "python3 $1"
-}
-
-# Git Functions
-function gbranch()
-{
-    git branch $1
-}
-
-function gcheck()
-{
-    git checkout $1
-}
-
-function gpull()
-{ 
-    TOKEN=$(cat /mnt/c/Users/larry/nyu/ics/git_learn/token.txt)
-    echo $TOKEN | tr -d '[:space:]' | clip.exe 
-    git pull origin $1
-}
-
-function gpush()
-{ 
-    TOKEN=$(cat /mnt/c/Users/larry/nyu/ics/git_learn/token.txt)
-    echo $TOKEN | tr -d '[:space:]' | clip.exe 
-    git push -u origin $1
-}
-
-function cpode ()
-{
+function cpode() {
     powershell.exe -c "code $1"
 }
-function jlab()
-{
+
+function jlab() {
     powershell.exe -c "conda activate ; jupyter-lab $1"
 }
 
-function gcom()
-{ 
-    git commit -m "$1"
+function btm() { 
+    powershell.exe -c "btm"
 }
 
-function glog()
-{ 
-    git log
+function ngstart() {
+    powershell.exe -c "ngrok tcp --region jp $1"
 }
 
-function gadd()
-{ 
-    git add $1
+function nv() {
+    if [ $# -eq 0 ]; then
+        nvim -c ":call LoadSession('lastsession.vim') | :NERDTree"
+    else
+        nvim $1
+    fi
 }
 
-function gmerge()
-{ 
-    git merge $1
-}
+# -----------------------------------------------------------------
+# Git Features
+# -----------------------------------------------------------------
 
-function test()
-{
-    var=$(echo $1 | tr "/" "\n")
-}
-function git_start()
-{
+function git_start() {
     # Copy Token
     TOKEN=$(cat /mnt/c/Users/larry/nyu/ics/git_learn/token.txt)
     echo $TOKEN | tr -d '[:space:]' | clip.exe 
@@ -302,44 +250,15 @@ function git_start()
     git remote add origin $1
     git push -u origin main
 }
-function gopen {
+
+function gopen() {
     gbrowsevar=$(git config --get remote.origin.url)
     printf "${gbrowsevar}"
     brave.exe $gbrowsevar
 }
-function lg ()
-{
+
+function lg() {
     TOKEN=$(cat /mnt/c/Users/larry/nyu/ics/git_learn/token.txt)
     echo $TOKEN | tr -d '[:space:]' | clip.exe 
     lazygit
-}
-
-function chat_system ()
-{
-    cd /mnt/c/Users/larry/nyu/ics/final_project
-}
-
-function chat_client ()
-{
-    cd /mnt/c/Users/larry/nyu/ics/final_project
-    nvim chat_client_class.py
-}
-
-function btm ()
-{ 
-    powershell.exe -c "btm"
-}
-function ngstart()
-{
-    powershell.exe -c "ngrok tcp --region jp $1"
-
-}
-
-function nv()
-{
-    if [ $# -eq 0 ]; then
-        nvim -c ":call LoadSession('lastsession.vim') | :NERDTree"
-    else
-        nvim $1
-    fi
 }

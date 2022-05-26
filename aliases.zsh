@@ -1,14 +1,19 @@
-#Bookmarks
+#░█████╗░██╗░░░░░██╗░█████╗░░██████╗███████╗░██████╗
+#██╔══██╗██║░░░░░██║██╔══██╗██╔════╝██╔════╝██╔════╝
+#███████║██║░░░░░██║███████║╚█████╗░█████╗░░╚█████╗░
+#██╔══██║██║░░░░░██║██╔══██║░╚═══██╗██╔══╝░░░╚═══██╗
+#██║░░██║███████╗██║██║░░██║██████╔╝███████╗██████╔╝
+#╚═╝░░╚═╝╚══════╝╚═╝╚═╝░░╚═╝╚═════╝░╚══════╝╚═════╝░
+
+# -----------------------------------------------------------------
+# File Shortcuts
+# -----------------------------------------------------------------
 alias ics="cd /mnt/c/Users/larry/nyu/ics"
 alias fin="cd /mnt/c/Users/larry/fin_analysis"
 alias stats="cd /mnt/c/Users/larry/nyu/stats"
 alias life="cd /mnt/c/Users/larry/life_design"
 alias wai="cd /mnt/c/Users/larry/nyu/WAI"
-#alias ob6="~/.config/zsh"
-#alias ob7="~/.config/nvim"
 alias home="cd /mnt/c/Users/larry"
-
-# Files Shortcuts
 alias zshrc="cd ~/.config/zsh"
 alias nvimrc="cd ~/.config/nvim"
 alias maps="cd /mnt/c/Users/larry/keymaps"
@@ -16,7 +21,9 @@ alias down='cd /mnt/c/Users/larry/Downloads'
 alias doc='cd /mnt/c/Users/larry/OneDrive/Documents'
 alias desk='cd /mnt/c/Users/larry/OneDrive/Desktop'
 
-# Applications
+# -----------------------------------------------------------------
+# Aliases to Launch Applications
+# -----------------------------------------------------------------
 alias excel="excel.exe"
 alias word="winword.exe"
 alias brave="brave.exe"
@@ -32,26 +39,29 @@ alias ger="ranger"
 alias t="trans"
 alias tt="ttyper"
 
+# -----------------------------------------------------------------
 # Run Files
+# -----------------------------------------------------------------
 alias ahk="Autohotkey.exe"
 alias py="python3"
 
-# Commands
+# -----------------------------------------------------------------
+# Command Aliases
+# -----------------------------------------------------------------
 alias cl="clear"
 alias cf="cfile"
 alias so="source ~/.config/zsh/.zshrc"
-#alias tc="touch"
 alias md="mkdir"
 alias rd="rmdir"
 alias pwsh="powershell.exe"
 alias startup="pwsh -File func.ps1"
 alias al="alias"
-
-# New Aliases
 alias myip='curl http://ipecho.net/plain; echo'
 alias distro='cat /etc/*-release'
 
-# Git
+# -----------------------------------------------------------------
+# Git Aliases
+# -----------------------------------------------------------------
 alias gb='gbranch'
 alias gc='gcheck'
 alias gadd='git add'
