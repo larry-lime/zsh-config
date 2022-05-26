@@ -255,9 +255,7 @@ function git_start() {
 }
 
 function gopen() {
-    gbrowsevar=$(git config --get remote.origin.url)
-    printf "${gbrowsevar}"
-    brave.exe $gbrowsevar
+    brave.exe $(git config --get remote.origin.url)
 }
 
 function lg() {
