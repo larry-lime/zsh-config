@@ -131,6 +131,7 @@ function mknote() {
 # -----------------------------------------------------------------
 # Personal Plugins
 # -----------------------------------------------------------------
+# TODO Code more interesting plugins and expand on the ones that I have
 
 function journal() {
     cd /mnt/c/Users/larry/OneDrive/Documents/'Journal Entries'
@@ -161,6 +162,8 @@ function stodo() {
     fi
 }
 
+# TODO Look to improve this and the journal plugin
+# Make it so that the files that are created are organized in to folders by year and month
 function todo() {
     cd /mnt/c/Users/larry/life_design/to_do
     DATE=$(date +%F)
