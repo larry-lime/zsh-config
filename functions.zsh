@@ -30,14 +30,24 @@ function zsh_add_completion() {
 	if [ "$2" = true ] && compinit "${completion_file:1}"
 }
 
+function oj ()
+{
+    if [ $# -eq 0 ]; then
+        jobs
+    else
+        fg %$1
+    fi
+}
+
 # Invoke-Item 
-function ii(){ 
+function go(){ 
     FILE=$1
     CHECK="${FILE##*.}"
-
+    if [[ ! -f $1 ]] then
+        touch $1
+    fi
     if [ "$CHECK" = "md" ]; then
-        nvim $FILE -c ":call FocusUpToggle()"
-        #nvim -c ":Calendar"
+        nvim $FILE
     elif [ "$CHECK" = "pdf" ]; then
         SumatraPDF.exe $FILE
     elif [ "$CHECK" = "docx" ]; then
@@ -194,11 +204,11 @@ function clip()
 }
 
 # Moves file or directory to file location in $CLIP and cds into that directory
-function go()
-{
-    mv $1 $CLIP
-    cd $CLIP
-}
+#function go()
+#{
+    #mv $1 $CLIP
+    #cd $CLIP
+#}
 
 function in()
 {
