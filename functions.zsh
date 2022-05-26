@@ -203,13 +203,6 @@ function clip()
     echo $CLIP
 }
 
-# Moves file or directory to file location in $CLIP and cds into that directory
-#function go()
-#{
-    #mv $1 $CLIP
-    #cd $CLIP
-#}
-
 function in()
 {
     cd $1 
@@ -234,10 +227,6 @@ function vimclock(){
     nvim -c ":Calendar -view=clock"
 }
 
-#function copy_toke()
-#{
-    #'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' | clip.exe
-#}
 # Pwsh functions
 function ppy
 {
@@ -354,12 +343,3 @@ function nv()
         nvim $1
     fi
 }
-
-
-#alias nv="nvim"
-#function ide ()
-#{
-    #tmux split-window -v -p 30
-    #tmux split-window -h -p 66
-    #tmux split-window -h -p 50
-#}
