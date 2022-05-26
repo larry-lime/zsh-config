@@ -1,4 +1,3 @@
 .sessions/
 .zscompdump
 prompt.zsh.old
-tempfile
