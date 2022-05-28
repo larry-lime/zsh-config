@@ -1,3 +1,4 @@
+#!/usr/bin/zsh
 #░█████╗░██╗░░░░░██╗░█████╗░░██████╗███████╗░██████╗
 #██╔══██╗██║░░░░░██║██╔══██╗██╔════╝██╔════╝██╔════╝
 #███████║██║░░░░░██║███████║╚█████╗░█████╗░░╚█████╗░
@@ -11,8 +12,8 @@
 alias ics="cd /mnt/c/Users/larry/nyu/ics"
 alias fin="cd /mnt/c/Users/larry/fin_analysis"
 alias stats="cd /mnt/c/Users/larry/nyu/stats"
-alias life="cd /mnt/c/Users/larry/life_design"
 alias wai="cd /mnt/c/Users/larry/nyu/WAI"
+alias life="cd /mnt/c/Users/larry/life_design; tree -d"
 alias home="cd /mnt/c/Users/larry"
 alias zshrc="cd ~/.config/zsh"
 alias nvimrc="cd ~/.config/nvim"
@@ -38,6 +39,7 @@ alias zoom="Zoom.exe"
 alias ger="ranger"
 alias t="trans"
 alias tt="ttyper"
+# Look to potentially remap bat and exa command
 
 # -----------------------------------------------------------------
 # Run Files
@@ -58,6 +60,12 @@ alias startup="pwsh -File func.ps1"
 alias al="alias"
 alias myip='curl http://ipecho.net/plain; echo'
 alias distro='cat /etc/*-release'
+alias cat="batcat"
+alias ll="ls -l"
+# Look into configuring these commands for my liking
+#alias ll="exa -l"
+#alias ls="exa"
+#alias cd="z"
 
 # -----------------------------------------------------------------
 # Git Aliases

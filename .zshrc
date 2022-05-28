@@ -63,3 +63,4 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 #warning: be sure to add `/home/larrylime/.cargo/bin` to your PATH to be able to run the installed binaries
 PATH="$PATH:/home/larrylime"
 PATH="$PATH:/home/larrylime/.cargo/bin"
+eval "$(zoxide init zsh)"
