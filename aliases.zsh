@@ -61,7 +61,9 @@ alias al="alias"
 alias myip='curl http://ipecho.net/plain; echo'
 alias distro='cat /etc/*-release'
 alias cat="batcat"
-alias ll="ls -l"
+alias ls="exa"
+alias tree="exa --tree --icons"
+alias ll="exa -l"
 # Look into configuring these commands for my liking
 #alias ll="exa -l"
 #alias ls="exa"
