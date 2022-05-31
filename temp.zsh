@@ -36,3 +36,7 @@ function chat_client() {
     nvim chat_client_class.py
 }
 
+function cvim() {
+    cd ~/.config
+    mv nvim temp; mv nvim_alt nvim; mv temp nvim_alt
+}

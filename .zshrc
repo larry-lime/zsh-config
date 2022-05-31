@@ -18,7 +18,7 @@ source "$ZDOTDIR/functions.zsh"
 zsh_add_file "prompt.zsh"
 zsh_add_file "vim-mode.zsh"
 zsh_add_file "aliases.zsh"
-zsh_add_file "final_project_testing.zsh"
+zsh_add_file "temp.zsh"
 
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
