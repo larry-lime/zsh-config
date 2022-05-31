@@ -59,7 +59,7 @@ function take() {
     CLIP=$(pwd)
 }
 
-function go() {
+function ii() {
     FILE=$1
     CHECK="${FILE##*.}"
     if [[ ! -f $1 ]] then
@@ -165,7 +165,7 @@ function stodo() {
 
 # TODO Look to improve this and the journal plugin
 # Make it so that the files that are created are organized in to folders by year and month
-function todo() {
+function note() {
     cd /mnt/c/Users/larry/life_design/to_do
     DATE=$(date +%F)
     FILE="todo_${DATE}.md"
@@ -173,7 +173,7 @@ function todo() {
         nvim $FILE
     else
         touch $FILE
-        TEMPLATE="# Daily To-Do ${DATE} \n"
+        TEMPLATE="# Daily Notes ${DATE} \n"
         TEMPLATE+="\n## ACADEMICS\n"
         TEMPLATE+="- [ ] \n"
         TEMPLATE+="\n## WORK\n"
@@ -234,7 +234,8 @@ function ngstart() {
 
 function nv() {
     if [ $# -eq 0 ]; then
-        nvim -c ":call LoadSession('lastsession.vim') | :NERDTree"
+        #nvim -c ":call LoadSession('lastsession.vim') | :NERDTree"
+        nvim
     else
         nvim $1
     fi
