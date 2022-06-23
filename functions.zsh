@@ -45,11 +45,16 @@ function zsh_add_completion() {
 # My Custom Z-Shell Commands
 # -----------------------------------------------------------------
 function oj() {
-    if [ $# -eq 0 ]; then
-        jobs
-    else
-        fg %$1
-    fi
+  if [ $# -eq 0 ]; then
+      jobs -d
+  else
+      fg %$1
+  fi
+}
+
+function kj ()
+{
+  kill %$1
 }
 
 function take() {
@@ -62,31 +67,21 @@ function take() {
 function ii() {
     FILE=$1
     CHECK="${FILE##*.}"
-    if [[ ! -f $1 ]] then
+    if [[ ! -f $1 ]] then # Create the file if it doesn't exist
         touch $1
     fi
+    # Add custom defaults
     if [ "$CHECK" = "md" ]; then
         nvim $FILE
     elif [ "$CHECK" = "pdf" ]; then
-        SumatraPDF.exe $FILE
-    elif [ "$CHECK" = "docx" ]; then
-        winword.exe $FILE
-    elif [ "$CHECK" = "html" ]; then
-        brave.exe $FILE
-    elif [ "$CHECK" = "xslx" ]; then
-        excel.exe $FILE
-    elif [ "$CHECK" = "xlsm" ]; then
-        excel.exe $FILE
-    elif [ "$CHECK" = "xlsx" ]; then
-        excel.exe $FILE
-    elif [ "$CHECK" = "csv" ]; then
-        excel.exe $FILE
+      SumatraPDF.exe $FILE
     elif [ "$CHECK" = "py" ]; then
         nvim $FILE
     elif [ "$CHECK" = "txt" ]; then
         nvim $FILE
+    # Else use system defaults
     else
-        echo "Not working yet bro"
+        powershell.exe -c "ii $FILE"
     fi
 }
 
@@ -148,8 +143,7 @@ function journal() {
 }
 
 function proj() {
-    cd "/mnt/c/Users/larry/life_design/Projects/"
-    nvim "projects.md"
+  cd ~/Programming/
 }
 
 function stodo() {
@@ -232,14 +226,6 @@ function ngstart() {
     powershell.exe -c "ngrok tcp --region jp $1"
 }
 
-function nv() {
-    if [ $# -eq 0 ]; then
-        #nvim -c ":call LoadSession('lastsession.vim') | :NERDTree"
-        nvim
-    else
-        nvim $1
-    fi
-}
 
 # -----------------------------------------------------------------
 # Git Features
