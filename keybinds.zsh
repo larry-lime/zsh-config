@@ -1,0 +1,5 @@
+bindkey -s '\ef' 'f\n'
+bindkey -s '\ed' 's\n'
+bindkey -s '\eg' 'c\n'
+bindkey -s '^h' 'cd ~\n'
+bindkey -s '\et' 'tmux\n'
