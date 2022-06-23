@@ -10,13 +10,14 @@
 # File Shortcuts
 # -----------------------------------------------------------------
 alias ics="cd /mnt/c/Users/larry/nyu/ics"
-alias fin="cd /mnt/c/Users/larry/fin_analysis"
+alias fin="cd ~/Programming/projects/py_finance/"
 alias stats="cd /mnt/c/Users/larry/nyu/stats"
 alias wai="cd /mnt/c/Users/larry/nyu/WAI"
-alias life="cd /mnt/c/Users/larry/life_design"
+alias life="cd ~/Life"
+# alias life="cd /mnt/c/Users/larry/life_design"
 alias home="cd /mnt/c/Users/larry"
-alias zshrc="cd ~/.config/zsh"
-alias nvimrc="cd ~/.config/nvim"
+alias zshrc="cd ~/.config/zsh && nvim"
+alias nvimrc="cd ~/.config/nvim && nvim"
 alias luavim="cd ~/.config/nvim.new"
 alias maps="cd /mnt/c/Users/larry/keymaps"
 alias down='cd /mnt/c/Users/larry/Downloads'
@@ -26,20 +27,14 @@ alias desk='cd /mnt/c/Users/larry/OneDrive/Desktop'
 # -----------------------------------------------------------------
 # Aliases to Launch Applications
 # -----------------------------------------------------------------
-alias excel="excel.exe"
 alias word="winword.exe"
-alias brave="brave.exe"
-alias pdf="SumatraPDF.exe"
-alias obsidian="Obsidian.exe"
 alias explore="explorer.exe"
-alias fzf="fzf.exe"
-alias wt="pwsh wt.exe"
-alias mark="pwsh MarkText.exe"
-alias zoom="Zoom.exe"
-#alias nv="nvim"
 alias ger="ranger"
+alias t="tmux"
+alias nv="nvim"
 alias tt="ttyper"
-# Look to potentially remap bat and exa command
+alias tsource="tmux source ~/.tmux.conf"
+alias tconf="cd ~ && nvim .tmux.conf"
 
 # -----------------------------------------------------------------
 # Run Files
@@ -61,12 +56,9 @@ alias al="alias"
 alias myip='curl http://ipecho.net/plain; echo'
 alias distro='cat /etc/*-release'
 alias cat="batcat"
-alias ll="ls -l"
-#alias t="exa -T --icons -L 2"
-#alias ll="exa -l"
-# Look into configuring these commands for my liking
-#alias ll="exa -l"
-#alias ls="exa"
+alias ls="exa"
+alias ll="exa -l"
+alias tree="exa -T --icons"
 #alias cd="z"
 
 # -----------------------------------------------------------------
