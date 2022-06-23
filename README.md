@@ -33,3 +33,15 @@ My very minimal personal and constantly updated zshell configuration for the wor
 
 ## Plugins
 ...
+
+# Neofetch: Terminal SplashScreen
+#neofetch
+
+# Display random messages
+#fortune
+
+# Cowsay: Create eye-catchy splash screen prompts
+#fortune | cowsay
+#fortune | cowsay -f dragon
+#figlet utility to convert normal text to ASCII art
+#figlet -cl "larrylime"
