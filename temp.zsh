@@ -40,3 +40,14 @@ function cvim() {
     cd ~/.config
     mv nvim temp; mv nvim_alt nvim; mv temp nvim_alt
 }
+
+function tj ()
+{
+  cd /home/larrylime/Programming/trydjango/src/trydjango/
+}
+
+function senv ()
+{
+  source /home/larrylime/Programming/trydjango/bin/activate
+
+}
