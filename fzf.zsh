@@ -17,7 +17,11 @@ function f(){
 }
 
 function c() {
-  rg --files | fzf --preview 'batcat --style=numbers --color=always {} --line-range :500 {}'
+  FILEPATH=$(rg --files | fzf --preview 'batcat --style=numbers --color=always {} --line-range :500 {}')
+  if [ -z $FILEPATH ]; then
+    return
+  fi
+  $EDITOR $FILEPATH
 }
 
 function g() {
