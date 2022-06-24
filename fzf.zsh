@@ -11,13 +11,39 @@ function f(){
 
   FILE=$(basename $FILEPATH)
   DIR_PATH=$(dirname $FILEPATH)
-  PARENT_DIR=$(basename $DIR_PATH)
-  cd $DIR_PATH
-  $EDITOR $FILE
+  PARENT_DIR=$(basename $DIR_PATH | tr -d '.')
+
+  if [ -z "$TMUX" ]; then
+    tmux start-server
+    tmux new-session -ds $PARENT_DIR -c $DIR_PATH
+    tmux send-keys -t $PARENT_DIR.0 "$EDITOR $FILE" ENTER
+    tmux attach
+  else
+    cd $DIR_PATH
+    $EDITOR $FILE
+  fi
 }
 
-function c() {
-  FILEPATH=$(rg --files | fzf --preview 'batcat --style=numbers --color=always {} --line-range :500 {}')
+# Go to directories in select folders
+function fd() {
+  DIR_PATH=$(find ~/Programming ~/.config ~/Life ~/Career ~/Extracurriculars -type d | fzf --height 100% --preview 'tree -C {}')
+  if [ -z "$DIR_PATH" ]; then
+    return
+  fi
+  NAME=$(basename $DIR_PATH | tr -d '.')
+
+  if [ -z "$TMUX" ]; then
+    tmux start-server
+    tmux new-session -ds $NAME -c $DIR_PATH
+    tmux attach
+  else
+    cd $DIR_PATH
+  fi
+}
+
+# Go to any files in cwd
+function fc() {
+  FILEPATH=$(rg --files --hidden | fzf --preview 'batcat --style=numbers --color=always {} --line-range :500 {}')
   if [ -z $FILEPATH ]; then
     return
   fi
