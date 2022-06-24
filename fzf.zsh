@@ -47,7 +47,11 @@ function fc() {
   if [ -z $FILEPATH ]; then
     return
   fi
-  $EDITOR $FILEPATH
+  if [ -z $1 ]; then
+    $EDITOR $FILEPATH
+  else
+    $1 $FILEPATH
+  fi
 }
 
 function g() {
