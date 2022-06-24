@@ -1,8 +1,9 @@
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# export FZF_DEFAULT_COMMAND='find .'
-# export FZF_CTRL_T_COMMAND='t'
+# export FZF_DEFAULT_COMMAND=''
+# export FZF_CTRL_T_COMMAND=''
 
-function f(){
+# Go to files in select folders
+function ff(){
   FILEPATH=$(find ~/Programming ~/.config ~/Life ~/Career ~/Extracurriculars | fzf --height 100% --preview 'batcat --style=numbers --color=always --line-range :500 {}')
 
   if [ -z $FILEPATH ]; then
@@ -69,8 +70,8 @@ function g() {
         --hidden \
         --follow \
         --glob '!.git/*' "$1" \
-	| awk -F  ":" '/1/ {start = $2<40 ? 0 : $2 - 40; end = $2 + 40; print $1 " " $2 " " start ":" end}' \
-	| fzf --preview 'batcat --color always {1} --highlight-line {2} --line-range {3}')
+  | awk -F  ":" '/1/ {start = $2<40 ? 0 : $2 - 40; end = $2 + 40; print $1 " " $2 " " start ":" end}' \
+  | fzf --preview 'batcat --color always {1} --highlight-line {2} --line-range {3}')
         
   if [ -z "$out" ]; then
     return
@@ -78,13 +79,4 @@ function g() {
   read -r filename line <<< "${out}"
   LINE_NUMBER=${line%% *}
   $EDITOR -c ":$LINE_NUMBER" $filename
-}
-
-function s() {
-  DIR_PATH=$(find ~/Programming ~/.config ~/Life ~/Career ~/Extracurriculars -type d | fzf --height 100% --preview 'tree -C {}')
-  if [ -z "$DIR_PATH" ]; then
-    return
-  fi
-  NAME="$(basename -- $DIR_PATH)"
-  cd $DIR_PATH
 }
