@@ -20,7 +20,11 @@ function f(){
     tmux attach
   else
     cd $DIR_PATH
-    $EDITOR $FILE
+    if [ -z $1 ]; then
+      $EDITOR $FILE
+    else
+      $1 $FILE
+    fi
   fi
 }
 
