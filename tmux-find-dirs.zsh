@@ -5,12 +5,6 @@ if [ -z "$DIR_PATH" ]; then
   exit 0 
 fi
 
-NAME="$(basename -- $DIR_PATH)"
-
-if [ -z "$TMUX" ]; then
-  tmux new-session -s $NAME -c $DIR_PATH
-  exit 0
-else
-  tmux new-session -ds $NAME -c $DIR_PATH
-  tmux switch-client -t $NAME
-fi
+NAME=$(basename $DIR_PATH | tr -d '.')
+tmux new-session -ds $NAME -c $DIR_PATH
+tmux switch-client -t $NAME

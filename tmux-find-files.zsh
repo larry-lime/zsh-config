@@ -8,14 +8,8 @@ fi
 
 FILE=$(basename $FILEPATH)
 DIR_PATH=$(dirname $FILEPATH)
-PARENT_DIR=$(basename $DIR_PATH)
+PARENT_DIR=$(basename $DIR_PATH | tr -d '.')
 
-if [ -z "$TMUX" ]; then
-  tmux new-session -s $PARENT_DIR -c $DIR_PATH
-  # exit 0
-else
-  tmux new-session -ds $PARENT_DIR -c $DIR_PATH
-fi
-
+tmux new-session -ds $PARENT_DIR -c $DIR_PATH
 tmux send-keys -t $PARENT_DIR.0 "$EDITOR $FILE" ENTER
 tmux switch-client -t $PARENT_DIR
