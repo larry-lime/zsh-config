@@ -2,34 +2,81 @@
 # export FZF_DEFAULT_COMMAND=''
 # export FZF_CTRL_T_COMMAND=''
 
-# Go to files in select folders
-function ff(){
-  FILEPATH=$(find ~/Programming ~/.config ~/Life ~/Career ~/Extracurriculars | fzf --height 100% --preview 'batcat --style=numbers --color=always --line-range :500 {}')
+# This looks for both files and directories
+# TODO update this to search for either files and/or directories and take arguments
+# I can also turn this into a function where it accepts arguments like telescope. Then I can use it purely as an executable
+function f(){
+  FILEPATH=$(find ~/Programming ~/.config .tmux.conf ~/Life ~/Career ~/Extracurriculars -not -path '*/\.git/*'\
+    | fzf --expect "alt-enter,enter" --height 100% --preview 'if [ -d {} ]; then tree -C {}; else batcat --style=numbers --color=always --line-range :500 {};fi' \
+    | xargs echo)
 
-  if [ -z $FILEPATH ]; then
+  read -r ACTION NAME <<< "${FILEPATH}"
+
+  if [ -z $NAME ]; then
     return
   fi
 
-  FILE=$(basename $FILEPATH)
-  DIR_PATH=$(dirname $FILEPATH)
-  PARENT_DIR=$(basename $DIR_PATH | tr -d '.')
+  FILE=$(basename $NAME)
+  DIR_PATH=$(dirname $NAME)
+  PARENT_DIR=$(basename $FILE | tr -d '.')
 
   if [ -z "$TMUX" ]; then
+
     tmux start-server
-    tmux new-session -ds $PARENT_DIR -c $DIR_PATH
-    tmux send-keys -t $PARENT_DIR.0 "$EDITOR $FILE" ENTER
+    if [ -d $NAME ]; then
+      tmux new-session -ds $PARENT_DIR -c $NAME
+      if [ "$ACTION" = "alt-enter" ]; then
+        true
+      else
+        if [ -z $1 ]; then
+          tmux send-keys -t $PARENT_DIR.0 "$EDITOR" ENTER
+        else
+          tmux send-keys -t $PARENT_DIR.0 "$1" ENTER
+        fi
+      fi
+    else
+      tmux new-session -ds $PARENT_DIR -c $DIR_PATH
+      if [ "$ACTION" = "alt-enter" ]; then
+        true
+      else
+        if [ -z $1 ]; then
+          tmux send-keys -t $PARENT_DIR.0 "$EDITOR $FILE" ENTER
+        else
+          tmux send-keys -t $PARENT_DIR.0 "$1 $FILE" ENTER
+        fi
+      fi
+    fi
     tmux attach
   else
-    cd $DIR_PATH
-    if [ -z $1 ]; then
-      $EDITOR $FILE
+
+    if [ -d $NAME ]; then
+      cd $NAME
+      if [ "$ACTION" = "alt-enter" ]; then
+        return
+      fi
+
+      if [ -z $1 ]; then
+        $EDITOR
+      else
+        $1
+      fi
+
     else
-      $1 $FILE
+      cd $DIR_PATH
+      if [ "$ACTION" = "alt-enter" ]; then
+        return
+      fi
+
+      if [ -z $1 ]; then
+        $EDITOR $FILE
+      else
+        $1 $FILE
+      fi
     fi
   fi
 }
 
-# Go to directories in select folders
+# TODO Update this to work like the f function or delete it
 function fd() {
   DIR_PATH=$(find ~/Programming ~/.config ~/Life ~/Career ~/Extracurriculars -type d | fzf --height 100% --preview 'tree -C {}')
   if [ -z "$DIR_PATH" ]; then
@@ -46,9 +93,10 @@ function fd() {
   fi
 }
 
-# Go to any files in cwd
+# TODO Update this to work like the f function
 function fc() {
-  FILEPATH=$(rg --files --hidden | fzf --preview 'batcat --style=numbers --color=always {} --line-range :500 {}')
+  # FILEPATH=$(rg --files --hidden | fzf --preview 'batcat --style=numbers --color=always {} --line-range :500 {}')
+  FILEPATH=$(find . -not -path '*/\.git/*' | fzf --preview 'if [ -d {} ]; then tree -C {}; else batcat --style=numbers --color=always --line-range :500 {};fi')
   if [ -z $FILEPATH ]; then
     return
   fi
