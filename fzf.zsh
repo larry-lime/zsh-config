@@ -25,19 +25,32 @@ function f(){
   if [ -z "$TMUX" ]; then
 
     tmux start-server
-    if [ -d $NAME ]; then
-      tmux new-session -ds $PARENT_DIR -c $NAME
+    if [ -d $NAME ]; then # If the selection is a directory
+
+      if [ "$FILE" = "zsh" ] || [ "$FILE" = "nvim" ] || [ "$FILE" = "tmux" ]; then
+        tmux new-session -ds "config" -c $NAME
+      else
+        tmux new-session -ds $FILE -c $NAME
+      fi
+
       if [ "$ACTION" = "alt-enter" ]; then
         true
       else
         if [ -z $1 ]; then
-          tmux send-keys -t $PARENT_DIR.0 "$EDITOR" ENTER
+          tmux send-keys -t $FILE.0 "$EDITOR" ENTER
         else
-          tmux send-keys -t $PARENT_DIR.0 "$1" ENTER
+          tmux send-keys -t $FILE.0 "$1" ENTER
         fi
       fi
+
     else
-      tmux new-session -ds $PARENT_DIR -c $DIR_PATH
+
+      if [ "$PARENT_DIR" = "zsh "] || [ "$PARENT_DIR" = "nvim" ] || [ "$PARENT_DIR" = "tmux" ]; then
+        tmux new-session -ds "config" -c $DIR_PATH
+      else
+        tmux new-session -ds $PARENT_DIR -c $DIR_PATH
+      fi
+
       if [ "$ACTION" = "alt-enter" ]; then
         true
       else
