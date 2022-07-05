@@ -1,4 +1,5 @@
 # Z-Shell Config
+![Think](teddy_bear_typing_on_a_mechanical_keyboard.png) 
 
 **All configurations are not moved to .dotfiles repo**
 
