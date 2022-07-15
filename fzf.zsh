@@ -5,10 +5,10 @@
 # This looks for both files and directories
 # TODO update this to search for either files and/or directories and take arguments
 # I can also turn this into a function where it accepts arguments like telescope. Then I can use it purely as an executable
-# I also need to fix it so it is able to jump to the right directory
 # In the function, add the ability to copy the file path to clipboard and just display it as the output
+  # Make this relative
 function f(){
-  FILEPATH=$(find ~/Programming ~/.config .tmux.conf ~/Life ~/Career ~/Extracurriculars -not -path '*/\.git/*'\
+  FILEPATH=$(find ~/Dall-E_images ~/Programming ~/.config .tmux.conf ~/Life ~/Career ~/Extracurriculars -not -path '*/\.git/*'\
     | fzf --expect "alt-enter,enter" --height 100% --preview 'if [ -d {} ]; then tree -C {}; else batcat --style=numbers --color=always --line-range :500 {};fi' \
     | xargs echo)
 

@@ -1,7 +1,6 @@
 #!/usr/bin/zsh
 
-# I have to learn how to make this file executable by zsh
-FILEPATH=$(find ~/Programming ~/.config .tmux.conf ~/Life ~/Career ~/Extracurriculars -not -path '*/\.git/*'\
+FILEPATH=$(find ~/Dall-E_images ~/Programming ~/.config .tmux.conf ~/Life ~/Career ~/Extracurriculars -not -path '*/\.git/*'\
   | fzf --expect "alt-enter,enter" --height 100% --preview 'if [ -d {} ]; then tree -C {}; else batcat --style=numbers --color=always --line-range :500 {};fi' \
   | xargs echo)
 

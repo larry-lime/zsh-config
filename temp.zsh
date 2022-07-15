@@ -1,24 +1,25 @@
-#!/usr/bin/zsh
-#███████╗███████╗███╗░░░███╗██████╗░
-#╚══██╔══╝██╔════╝████╗░████║██╔══██╗
-#░░░██║░░░█████╗░░██╔████╔██║██████╔╝
-#░░░██║░░░██╔══╝░░██║╚██╔╝██║██╔═══╝░
-#░░░██║░░░███████╗██║░╚═╝░██║██║░░░░░
-#░░░╚═╝░░░╚══════╝╚═╝░░░░░╚═╝╚═╝░░░░░
+#   ______                   
+#  /_  __/__  ____ ___  ____ 
+#   / / / _ \/ __ `__ \/ __ \
+#  / / /  __/ / / / / / /_/ /
+# /_/  \___/_/ /_/ /_/ .___/ 
+#                   /_/
 
 # -----------------------------------------------------------------
 # Functions for Testing my ICS Final Project
 # -----------------------------------------------------------------
 function ups() {
-    cd /mnt/c/Users/larry/nyu/ics/final_project
-    VAR=chat_server.py
+    VAR="/home/larrylime/Programming/ics_project/chat_server.py"
     powershell.exe -c "python3 $VAR"
 }
 
 function upc() {
-    cd /mnt/c/Users/larry/nyu/ics/final_project 
-    VAR=chat_cmdl_client.py
+    VAR="/home/larrylime/Programming/ics_project/chat_cmdl_client.py" 
     powershell.exe -c "python3 $VAR"
+}
+
+function ngstart() {
+    powershell.exe -c "ngrok tcp --region jp $1"
 }
 
 function fin_start() {
