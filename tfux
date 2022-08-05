@@ -1,112 +1,139 @@
 #!/usr/bin/zsh
 
 OUTPUT=$(find ~/projects/ ~/.config -not -path '*/\.git/*'\
-  | fzf
+  | fzf\
     --expect "alt-enter,enter" \
     --height 100% \
     --preview 'if [ -d {} ]; then tree -C {}; else batcat --style=numbers --color=always --line-range :500 {};fi' \
   | xargs echo)
 
-read -r ACTION SELECTION <<< "${OUTPUT}" # Assign the selected file/directory to $SELECTION and the key(s) pressed (alt-enter or enter) to $ACTION
+read -r KEYPRESS BASE_PATH <<< "${OUTPUT}" # Assign the selected file/directory to $SELECTION and the key(s) pressed (alt-enter or enter) to $KEYPRESS
 
-if [ -z $SELECTION ]; then # If $SELECTION does not exist
-  exit 0
-fi
-
-BASE_NAME=$(basename $SELECTION) # E.g. /home/user/.config/init.lua -> init.lua
-DIR_NAME=$(dirname $SELECTION) # E.g. /home/user/.config/init.lua -> /home/user/.config
-PARENT_DIR=$(basename $DIR_NAME | tr -d '.') # E.g. /home/user/.config/init.lua -> config
+BASE_NAME=$(basename $BASE_PATH) # E.g. /home/user/.config/init.lua -> init.lua
+PARENT_PATH=$(dirname $BASE_PATH) # E.g. /home/user/.config/init.lua -> /home/user/.config
+PARENT_NAME=$(basename $PARENT_PATH | tr -d '.') # E.g. /home/user/.config/init.lua -> config
 IS_CONFIG=false
 
-main ()
-{
-  if [[ -z "$TMUX" ]]; then # If Tmux is running...
-    tmux start-server; tfux_start # TODO: change this so it's tfux run or something 
-  else
-    tmux_off
-  fi
-}
+if [ -z $BASE_PATH ]; then # Exit if $BASE_PATH does not exist
+  exit 0
+fi
 
 start_new_session ()
 {
   if [[ "$BASE_NAME" = "zsh" ]] || [[ "$BASE_NAME" = "nvim" ]] || [[ "$BASE_NAME" = "tmux" ]]; then # If it's a config directory name the tmux session 'config'
     IS_CONFIG=true
-    tmux new-session -ds "config" -c $SELECTION
+    tmux new-session -ds "config" -c $BASE_PATH
   else
-    tmux new-session -ds $BASE_NAME -c $SELECTION # Else, make $SELECTION the session name
+    tmux new-session -ds $BASE_NAME -c $BASE_PATH # Else, make $SELECTION the session name
   fi
 }
 
 jump_to_open_session ()
 {
-  if [[ !$IS_CONFIG ]]; then # If the $SELECTION is not a config file/directory
+  if [[ !$IS_CONFIG ]]; then # If the $BASE_PATH is not a config file/directory
     tmux switch-client -t $BASE_NAME
-  else # If $SELECTION is a config file/directory
+  else # If $BASE_PATH is a config file/directory
     tmux switch-client -t "config"
   fi
 }
 
-open_directory ()
+open_directory_with_tmux ()
 {
-  if [ "$ACTION" = "enter" ]; then # If the key pressed is 'enter'
-    true
-  else # If the key pressed is 'alt-enter'
-    if [ -z $1 ]; then # If an editor argument is given
-      tmux send-keys -t $BASE_NAME.0 "$EDITOR ." ENTER
-    else
-      tmux send-keys -t $BASE_NAME.0 "$1" ENTER
-    fi
+  if [ "$KEYPRESS" = "enter" ]; then
+    cd $BASE_PATH
+  else
+    tmux send-keys -t $BASE_NAME.0 "$EDITOR ." ENTER
   fi
 }
 
-open_file ()
+open_file_with_tmux ()
 {
-  if [ "$ACTION" = "enter" ]; then # If 
+  if [ "$KEYPRESS" = "enter" ]; then
+    cd $PARENT_PATH
+  else
+    tmux send-keys -t $PARENT_NAME.0 "$EDITOR $BASE_NAME" ENTER
+  fi
+  tmux switch-client -t $PARENT_NAME # TODO fix this
+}
+
+open_file_normally ()
+{
+  if [ "$KEYPRESS" = "enter" ]; then
     true
   else
-    if [ -z $1 ]; then
-      tmux send-keys -t $PARENT_DIR.0 "$EDITOR $BASE_NAME" ENTER
-    else
-      tmux send-keys -t $PARENT_DIR.0 "$1 $BASE_NAME" ENTER
-    fi
+    $EDITOR $BASE_NAME
   fi
-  tmux switch-client -t $PARENT_DIR # TODO fix this
 }
 
-tfux_start ()
+open_directory_normally ()
+{
+  if [ "$KEYPRESS" = "enter" ]; then
+    true
+  else
+    $EDITOR .
+  fi
+}
+
+run_with_tmux ()
 {
   start_new_session
-  if [ -d $SELECTION ]; then
-    open_directory
+  if [ -d $BASE_PATH ]; then
+    open_directory_with_tmux
   else
-    open_file
+    open_file_with_tmux
   fi
 }
 
-tmux_off ()
+run_normally ()
 {
-    if [ -d $name ]; then
-      cd $name
-      if [ "$action" = "enter" ]; then
-        return
-      fi
-
-      if [ -z $1 ]; then
-        $editor
-      else
-        $1
-      fi
-
-    else
-      cd $dir_path
-      if [ "$action" = "enter" ]; then
-        return
-      fi
-
-      if [ -z $1 ]; then
-        $editor $file
-      else
-        $1 $file
-      fi
-    fi
+  if [ -d $BASE_PATH ]; then
+    cd $BASE_PATH
+    open_directory_normally
+  else
+    cd $PARENT_PATH
+    open_file_normally
+  fi
 }
+
+debug ()
+{
+  echo "Base path: $BASE_PATH"
+  echo "Base name: $BASE_NAME"
+  echo "Parent path: $PARENT_PATH"
+  echo "Parent dir: $PARENT_NAME"
+}
+
+if [[ -z "$TMUX" ]]; then # If Tmux is running...
+  tmux start-server; run_with_tmux
+else
+  run_normally
+fi
+
+# TODO figure out what to do with this
+# tmux_off ()
+# {
+#     if [ -d $name ]; then
+#       cd $name
+#       if [ "$action" = "enter" ]; then
+#         return
+#       fi
+#
+#       if [ -z $1 ]; then
+#         $editor
+#       else
+#         $1
+#       fi
+#
+#     else
+#       cd $dir_path
+#       if [ "$action" = "enter" ]; then
+#         return
+#       fi
+#
+#       if [ -z $1 ]; then
+#         $editor $file
+#       else
+#         $1 $file
+#       fi
+#     fi
+# }

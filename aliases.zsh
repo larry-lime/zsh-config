@@ -34,6 +34,7 @@ alias tt="ttyper"
 alias tsource="tmux source ~/.config/tmux/tmux.conf"
 alias tconf="cd ~/.config/tmux/ && nvim tmux.conf"
 alias tp="Typora.exe"
+alias tfux="~/.config/zsh/tfux"
 
 # -----------------------------------------------------------------
 # Run Files
