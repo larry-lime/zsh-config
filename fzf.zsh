@@ -8,7 +8,7 @@
 # In the function, add the ability to copy the file path to clipboard and just display it as the output
   # Make this relative
 function f(){
-  FILEPATH=$(find ~/Dall-E_images ~/Programming ~/.config .tmux.conf ~/Life ~/Career ~/Extracurriculars -not -path '*/\.git/*'\
+  FILEPATH=$(find ~/Dall-E_images ~/DURF ~/Programming ~/.config .tmux.conf ~/Life ~/Career ~/Extracurriculars -not -path '*/\.git/*'\
     | fzf --expect "alt-enter,enter" --height 100% --preview 'if [ -d {} ]; then tree -C {}; else batcat --style=numbers --color=always --line-range :500 {};fi' \
     | xargs echo)
 

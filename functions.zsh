@@ -216,6 +216,10 @@ function jlab() {
     powershell.exe -c "conda activate ; jupyter-lab $1"
 }
 
+function jbook() {
+    powershell.exe -c "conda activate ; jupyter-lab $1"
+}
+
 function btm() { 
     powershell.exe -c "btm"
 }

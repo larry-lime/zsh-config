@@ -1,6 +1,6 @@
 #!/usr/bin/zsh
 
-FILEPATH=$(find ~/Dall-E_images ~/Programming ~/.config .tmux.conf ~/Life ~/Career ~/Extracurriculars -not -path '*/\.git/*'\
+FILEPATH=$(find ~/Dall-E_images ~/DURF ~/Programming ~/.config .tmux.conf ~/Life ~/Career ~/Extracurriculars -not -path '*/\.git/*'\
   | fzf --expect "alt-enter,enter" --height 100% --preview 'if [ -d {} ]; then tree -C {}; else batcat --style=numbers --color=always --line-range :500 {};fi' \
   | xargs echo)
 
@@ -22,7 +22,7 @@ if [ -d $NAME ]; then
     tmux new-session -ds $FILE -c $NAME
   fi
 
-  if [ "$ACTION" = "alt-enter" ]; then
+  if [ "$ACTION" = "enter" ]; then
     true
   else
     if [ -z $1 ]; then
@@ -40,7 +40,7 @@ else
     tmux new-session -ds $PARENT_DIR -c $DIR_PATH
   fi
 
-  if [ "$ACTION" = "alt-enter" ]; then
+  if [ "$ACTION" = "enter" ]; then
     true
   else
     if [ -z $1 ]; then
