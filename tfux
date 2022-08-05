@@ -1,0 +1,112 @@
+#!/usr/bin/zsh
+
+OUTPUT=$(find ~/projects/ ~/.config -not -path '*/\.git/*'\
+  | fzf
+    --expect "alt-enter,enter" \
+    --height 100% \
+    --preview 'if [ -d {} ]; then tree -C {}; else batcat --style=numbers --color=always --line-range :500 {};fi' \
+  | xargs echo)
+
+read -r ACTION SELECTION <<< "${OUTPUT}" # Assign the selected file/directory to $SELECTION and the key(s) pressed (alt-enter or enter) to $ACTION
+
+if [ -z $SELECTION ]; then # If $SELECTION does not exist
+  exit 0
+fi
+
+BASE_NAME=$(basename $SELECTION) # E.g. /home/user/.config/init.lua -> init.lua
+DIR_NAME=$(dirname $SELECTION) # E.g. /home/user/.config/init.lua -> /home/user/.config
+PARENT_DIR=$(basename $DIR_NAME | tr -d '.') # E.g. /home/user/.config/init.lua -> config
+IS_CONFIG=false
+
+main ()
+{
+  if [[ -z "$TMUX" ]]; then # If Tmux is running...
+    tmux start-server; tfux_start # TODO: change this so it's tfux run or something 
+  else
+    tmux_off
+  fi
+}
+
+start_new_session ()
+{
+  if [[ "$BASE_NAME" = "zsh" ]] || [[ "$BASE_NAME" = "nvim" ]] || [[ "$BASE_NAME" = "tmux" ]]; then # If it's a config directory name the tmux session 'config'
+    IS_CONFIG=true
+    tmux new-session -ds "config" -c $SELECTION
+  else
+    tmux new-session -ds $BASE_NAME -c $SELECTION # Else, make $SELECTION the session name
+  fi
+}
+
+jump_to_open_session ()
+{
+  if [[ !$IS_CONFIG ]]; then # If the $SELECTION is not a config file/directory
+    tmux switch-client -t $BASE_NAME
+  else # If $SELECTION is a config file/directory
+    tmux switch-client -t "config"
+  fi
+}
+
+open_directory ()
+{
+  if [ "$ACTION" = "enter" ]; then # If the key pressed is 'enter'
+    true
+  else # If the key pressed is 'alt-enter'
+    if [ -z $1 ]; then # If an editor argument is given
+      tmux send-keys -t $BASE_NAME.0 "$EDITOR ." ENTER
+    else
+      tmux send-keys -t $BASE_NAME.0 "$1" ENTER
+    fi
+  fi
+}
+
+open_file ()
+{
+  if [ "$ACTION" = "enter" ]; then # If 
+    true
+  else
+    if [ -z $1 ]; then
+      tmux send-keys -t $PARENT_DIR.0 "$EDITOR $BASE_NAME" ENTER
+    else
+      tmux send-keys -t $PARENT_DIR.0 "$1 $BASE_NAME" ENTER
+    fi
+  fi
+  tmux switch-client -t $PARENT_DIR # TODO fix this
+}
+
+tfux_start ()
+{
+  start_new_session
+  if [ -d $SELECTION ]; then
+    open_directory
+  else
+    open_file
+  fi
+}
+
+tmux_off ()
+{
+    if [ -d $name ]; then
+      cd $name
+      if [ "$action" = "enter" ]; then
+        return
+      fi
+
+      if [ -z $1 ]; then
+        $editor
+      else
+        $1
+      fi
+
+    else
+      cd $dir_path
+      if [ "$action" = "enter" ]; then
+        return
+      fi
+
+      if [ -z $1 ]; then
+        $editor $file
+      else
+        $1 $file
+      fi
+    fi
+}

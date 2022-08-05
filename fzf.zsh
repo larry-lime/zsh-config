@@ -8,10 +8,9 @@
 # In the function, add the ability to copy the file path to clipboard and just display it as the output
   # Make this relative
 function f(){
-  FILEPATH=$(find ~/Dall-E_images ~/DURF ~/Programming ~/.config .tmux.conf ~/Life ~/Career ~/Extracurriculars -not -path '*/\.git/*'\
+  FILEPATH=$(find ~/projects/ -not -path '*/\.git/*'\
     | fzf --expect "alt-enter,enter" --height 100% --preview 'if [ -d {} ]; then tree -C {}; else batcat --style=numbers --color=always --line-range :500 {};fi' \
     | xargs echo)
-
   read -r ACTION NAME <<< "${FILEPATH}"
 
   if [ -z $NAME ]; then
@@ -23,17 +22,15 @@ function f(){
   PARENT_DIR=$(basename $FILE | tr -d '.')
 
   if [ -z "$TMUX" ]; then
-
     tmux start-server
     if [ -d $NAME ]; then # If the selection is a directory
-
       if [ "$FILE" = "zsh" ] || [ "$FILE" = "nvim" ] || [ "$FILE" = "tmux" ]; then
         tmux new-session -ds "config" -c $NAME
       else
         tmux new-session -ds $FILE -c $NAME
       fi
 
-      if [ "$ACTION" = "alt-enter" ]; then
+      if [ "$ACTION" = "enter" ]; then
         true
       else
         if [ -z $1 ]; then
@@ -51,7 +48,7 @@ function f(){
         tmux new-session -ds $PARENT_DIR -c $DIR_PATH
       fi
 
-      if [ "$ACTION" = "alt-enter" ]; then
+      if [ "$ACTION" = "enter" ]; then
         true
       else
         if [ -z $1 ]; then
@@ -63,29 +60,28 @@ function f(){
     fi
     tmux attach
   else
-
-    if [ -d $NAME ]; then
-      cd $NAME
-      if [ "$ACTION" = "alt-enter" ]; then
+    if [ -d $name ]; then
+      cd $name
+      if [ "$action" = "enter" ]; then
         return
       fi
 
       if [ -z $1 ]; then
-        $EDITOR
+        $editor
       else
         $1
       fi
 
     else
-      cd $DIR_PATH
-      if [ "$ACTION" = "alt-enter" ]; then
+      cd $dir_path
+      if [ "$action" = "enter" ]; then
         return
       fi
 
       if [ -z $1 ]; then
-        $EDITOR $FILE
+        $editor $file
       else
-        $1 $FILE
+        $1 $file
       fi
     fi
   fi
