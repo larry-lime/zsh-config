@@ -37,6 +37,7 @@ PATH_IS_DIR=false
 PATH_IS_FILE=false
 PATH_IS_CONFIG=false
 SESSION_IS_RUNNING=false
+RUN_TMUX=true
 
 start_new_session ()
 {
@@ -84,17 +85,26 @@ recursive_search ()
 open_directory ()
 {
   if [ "$KEYPRESS" = "enter" ]; then
-    start_new_session
-    tmux send-keys -t $BASE_NAME.0 "$EDITOR" ENTER
+    if [[ "$RUN_TMUX" = true ]]; then
+      start_new_session
+      tmux send-keys -t $BASE_NAME.0 "$EDITOR" ENTER
+    else
+      cd $BASE_PATH
+      $EDITOR
+    fi
   elif [[ "$KEYPRESS" = "alt-g" ]]; then
     grep_search
   elif [[ "$KEYPRESS" = "alt-f" ]]; then
     recursive_search
   else
-    start_new_session
+    if [[ "$RUN_TMUX" = true ]]; then
+      start_new_session
+    else
+      cd $BASE_PATH
+    fi
   fi
 
-  if [[ "$SESSION_IS_RUNNING" = true ]]; then
+  if [[ "$RUN_TMUX" = true ]] && [[ "$SESSION_IS_RUNNING" = true ]]; then
     jump_to_open_session
   fi
 }
@@ -102,17 +112,26 @@ open_directory ()
 open_file ()
 {
   if [ "$KEYPRESS" = "enter" ]; then
-    start_new_session
-    tmux send-keys -t $PARENT_NAME.0 "$EDITOR $BASE_NAME" ENTER
+    if [[ "$RUN_TMUX" = true ]]; then
+      start_new_session
+      tmux send-keys -t $PARENT_NAME.0 "$EDITOR $BASE_NAME" ENTER
+    else
+      cd $PARENT_PATH
+      $EDITOR $BASE_NAME
+    fi
   elif [[ "$KEYPRESS" = "alt-g" ]]; then
     grep_search
   elif [[ "$KEYPRESS" = "alt-f" ]]; then
     recursive_search
   else
-    start_new_session
+    if [[ "$RUN_TMUX" = true ]]; then
+      start_new_session
+    else
+      cd $PARENT_PATH
+    fi
   fi
 
-  if [[ "$SESSION_IS_RUNNING" = true ]]; then
+  if [[ "$RUN_TMUX" = true ]] && [[ "$SESSION_IS_RUNNING" = true ]]; then
     jump_to_open_session
   fi
 }
