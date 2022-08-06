@@ -51,12 +51,31 @@ jump_to_open_session ()
   fi
 }
 
+# TODO when recursively searching, display relative path instead of absolute path
+recursive_search ()
+{
+
+  if [[ $PATH_IS_DIR ]]; then
+    search_path="$BASE_PATH"
+    relative_path="$BASE_NAME"
+  elif [[ $PATH_IS_FILE ]]; then
+    search_path="$PARENT_PATH"
+    relative_path="$PARENT_NAME"
+  fi
+
+  ~/.config/zsh/tfux $search_path
+}
+
 open_directory ()
 {
   if [ "$KEYPRESS" = "enter" ]; then
     tmux send-keys -t $BASE_NAME.0 "$EDITOR" ENTER
   elif [[ "$KEYPRESS" = "alt-g" ]]; then
     grep_search
+  elif [[ "$KEYPRESS" = "alt-f" ]]; then
+    recursive_search
+  else
+    start_new_session
   fi
   jump_to_open_session
 }
@@ -67,6 +86,10 @@ open_file ()
     tmux send-keys -t $PARENT_NAME.0 "$EDITOR $BASE_NAME" ENTER
   elif [[ "$KEYPRESS" = "alt-g" ]]; then
     grep_search
+  elif [[ "$KEYPRESS" = "alt-f" ]]; then
+    recursive_search
+  else
+    start_new_session
   fi
   jump_to_open_session
 }
