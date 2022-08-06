@@ -1,6 +1,7 @@
 #!/usr/bin/zsh
 
-if [[ -z $1 ]]; then
+# TODO Find a way to add the find arguments into a variable
+if [[ -z $1 ]] || [[ ${@:$#} = "--tmux" ]]; then
   OUTPUT=$(find ~/projects ~/.config ~/career -not -path '*/\.git/*'\
     | fzf\
       --expect "alt-enter,enter,alt-g,alt-f" \
@@ -11,8 +12,9 @@ if [[ -z $1 ]]; then
         batcat --style=numbers --color=always --line-range :500 {};
       fi"\
     | xargs echo)
+
 else
-  OUTPUT=$(find $1 -not -path '*/\.git/*'\
+  OUTPUT=$(find ${@:$#} -not -path '*/\.git/*'\
     | fzf\
       --expect "alt-enter,enter,alt-g,alt-f" \
       --preview "
@@ -21,13 +23,13 @@ else
       else
         batcat --style=numbers --color=always --line-range :500 {};
       fi"\
-    | xargs echo)
+    | xargs echo) # Simply add the other part of the string to the preview
 fi
 
 read -r KEYPRESS BASE_PATH <<< "${OUTPUT}"
 
 if [ -z $BASE_PATH ]; then
-  exit 0
+  return
 fi
 
 BASE_NAME=$(basename $BASE_PATH)
@@ -37,7 +39,12 @@ PATH_IS_DIR=false
 PATH_IS_FILE=false
 PATH_IS_CONFIG=false
 SESSION_IS_RUNNING=false
-RUN_TMUX=true
+
+if [[ "$1" = "--tmux" ]]; then
+  RUN_TMUX=true
+else
+  RUN_TMUX=false
+fi
 
 start_new_session ()
 {
@@ -79,7 +86,7 @@ recursive_search ()
     relative_path="$PARENT_NAME"
   fi
 
-  source ~/.config/zsh/tfux $search_path
+  source ~/.config/zsh/tfux --tmux $search_path
 }
 
 open_directory ()
@@ -156,7 +163,7 @@ grep_search () {
     | awk -F  ":" '{print $1 " " $2 " " $3}' \
     | fzf\
       --expect "alt-enter,enter" \
-      --preview "batcat --color always {1} -H {2}" \
+      --preview "batcat --color always {1} -H {2} --line-range :500" \
     | xargs echo)
 
 

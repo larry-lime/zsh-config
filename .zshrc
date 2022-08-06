@@ -11,8 +11,10 @@ zsh_add_file "prompt.zsh"
 zsh_add_file "vim-mode.zsh"
 zsh_add_file "aliases.zsh"
 zsh_add_file "temp.zsh"
-zsh_add_file "fzf.zsh"
 zsh_add_file "keybinds.zsh"
+# zsh_add_file "fzf.zsh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
