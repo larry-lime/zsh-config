@@ -1,6 +1,6 @@
 #!/usr/bin/zsh
 
-OUTPUT=$(find ~/projects ~/.config ~/career -not -path '*/\.git/*'\
+OUTPUT=$(find $@ -not -path '*/\.git/*'\
   | fzf\
     --expect "alt-enter,enter,alt-g,alt-f" \
     --preview "
@@ -23,19 +23,21 @@ PARENT_NAME=$(basename $PARENT_PATH | tr -d '.')
 PATH_IS_DIR=false
 PATH_IS_FILE=false
 PATH_IS_CONFIG=false
+SESSION_IS_RUNNING=false
 
 start_new_session ()
 {
   if [[ "$PATH_IS_DIR" = true ]]; then
-    if [[ "$BASE_NAME" = "zsh" ]] || [[ "$BASE_NAME" = "nvim" ]] || [[ "$BASE_NAME" = "tmux" ]]; then # If it's a config directory name the tmux session 'config'
+    if [[ "$BASE_NAME" = "zsh" ]] || [[ "$BASE_NAME" = "nvim" ]] || [[ "$BASE_NAME" = "tmux" ]]; then
       PATH_IS_CONFIG=true
       tmux new-session -ds "config" -c $BASE_PATH
     else
-      tmux new-session -ds $BASE_NAME -c $BASE_PATH # Else, make $SELECTION the session name
+      tmux new-session -ds $BASE_NAME -c $BASE_PATH
     fi
   elif [[ "$PATH_IS_FILE" = true ]]; then
-    tmux new-session -ds $PARENT_NAME -c $PARENT_PATH # Else, make $SELECTION the session name
+    tmux new-session -ds $PARENT_NAME -c $PARENT_PATH
   fi
+  SESSION_IS_RUNNING=true
 }
 
 jump_to_open_session ()
@@ -69,6 +71,7 @@ recursive_search ()
 open_directory ()
 {
   if [ "$KEYPRESS" = "enter" ]; then
+    start_new_session
     tmux send-keys -t $BASE_NAME.0 "$EDITOR" ENTER
   elif [[ "$KEYPRESS" = "alt-g" ]]; then
     grep_search
@@ -77,12 +80,16 @@ open_directory ()
   else
     start_new_session
   fi
-  jump_to_open_session
+
+  if [[ "$SESSION_IS_RUNNING" = true ]]; then
+    jump_to_open_session
+  fi
 }
 
 open_file ()
 {
   if [ "$KEYPRESS" = "enter" ]; then
+    start_new_session
     tmux send-keys -t $PARENT_NAME.0 "$EDITOR $BASE_NAME" ENTER
   elif [[ "$KEYPRESS" = "alt-g" ]]; then
     grep_search
@@ -91,15 +98,18 @@ open_file ()
   else
     start_new_session
   fi
-  jump_to_open_session
+
+  if [[ "$SESSION_IS_RUNNING" = true ]]; then
+    jump_to_open_session
+  fi
 }
 
 grep_search () {
 
-  if [[ $PATH_IS_DIR ]]; then
+  if [[ "$PATH_IS_DIR" = true ]]; then
     grep_name="$BASE_PATH"
     session_name="$BASE_NAME"
-  elif [[ $PATH_IS_FILE ]]; then
+  elif [[ "$PATH_IS_FILE" = true ]]; then
     grep_name="$PARENT_PATH"
     session_name="$PARENT_NAME"
   fi
@@ -117,8 +127,10 @@ grep_search () {
       --preview "batcat --color always {1} -H {2}" \
     | xargs echo)
 
-  if [ -z "$output" ]; then
-    tmux kill-session -t $session_name
+
+  if [ ! -z "$output" ]; then
+    start_new_session
+  else
     return
   fi
 
@@ -162,11 +174,9 @@ main ()
 {
   if [ -d $BASE_PATH ]; then
     PATH_IS_DIR=true
-    start_new_session
     open_directory
   else
     PATH_IS_FILE=true
-    start_new_session
     open_file
   fi
 }
