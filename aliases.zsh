@@ -58,7 +58,7 @@ alias distro='cat /etc/*-release'
 alias cat="batcat"
 alias ls="exa"
 alias ll="exa -l"
-alias tree="exa -T --icons"
+# alias tree="exa -T --icons"
 #alias cd="z"
 
 # -----------------------------------------------------------------

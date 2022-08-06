@@ -1,139 +1,129 @@
 #!/usr/bin/zsh
 
-OUTPUT=$(find ~/projects/ ~/.config -not -path '*/\.git/*'\
+OUTPUT=$(find ~/projects ~/.config ~/career -not -path '*/\.git/*'\
   | fzf\
-    --expect "alt-enter,enter" \
-    --height 100% \
-    --preview 'if [ -d {} ]; then tree -C {}; else batcat --style=numbers --color=always --line-range :500 {};fi' \
+    --expect "alt-enter,enter,alt-g,alt-f" \
+    --preview "
+    if [ -d {} ]; then
+      exa -T -L 2 --icons --group-directories-first -I 'node_modules' --git-ignore {};
+    else
+      batcat --style=numbers --color=always --line-range :500 {};
+    fi"\
   | xargs echo)
 
-read -r KEYPRESS BASE_PATH <<< "${OUTPUT}" # Assign the selected file/directory to $SELECTION and the key(s) pressed (alt-enter or enter) to $KEYPRESS
+read -r KEYPRESS BASE_PATH <<< "${OUTPUT}"
 
-BASE_NAME=$(basename $BASE_PATH) # E.g. /home/user/.config/init.lua -> init.lua
-PARENT_PATH=$(dirname $BASE_PATH) # E.g. /home/user/.config/init.lua -> /home/user/.config
-PARENT_NAME=$(basename $PARENT_PATH | tr -d '.') # E.g. /home/user/.config/init.lua -> config
-IS_CONFIG=false
-
-if [ -z $BASE_PATH ]; then # Exit if $BASE_PATH does not exist
+if [ -z $BASE_PATH ]; then
   exit 0
 fi
 
+BASE_NAME=$(basename $BASE_PATH)
+PARENT_PATH=$(dirname $BASE_PATH)
+PARENT_NAME=$(basename $PARENT_PATH | tr -d '.')
+PATH_IS_DIR=false
+PATH_IS_FILE=false
+PATH_IS_CONFIG=false
+
 start_new_session ()
 {
-  if [[ "$BASE_NAME" = "zsh" ]] || [[ "$BASE_NAME" = "nvim" ]] || [[ "$BASE_NAME" = "tmux" ]]; then # If it's a config directory name the tmux session 'config'
-    IS_CONFIG=true
-    tmux new-session -ds "config" -c $BASE_PATH
-  else
-    tmux new-session -ds $BASE_NAME -c $BASE_PATH # Else, make $SELECTION the session name
+  if [[ "$PATH_IS_DIR" = true ]]; then
+    if [[ "$BASE_NAME" = "zsh" ]] || [[ "$BASE_NAME" = "nvim" ]] || [[ "$BASE_NAME" = "tmux" ]]; then # If it's a config directory name the tmux session 'config'
+      PATH_IS_CONFIG=true
+      tmux new-session -ds "config" -c $BASE_PATH
+    else
+      tmux new-session -ds $BASE_NAME -c $BASE_PATH # Else, make $SELECTION the session name
+    fi
+  elif [[ "$PATH_IS_FILE" = true ]]; then
+    tmux new-session -ds $PARENT_NAME -c $PARENT_PATH # Else, make $SELECTION the session name
   fi
 }
 
 jump_to_open_session ()
 {
-  if [[ !$IS_CONFIG ]]; then # If the $BASE_PATH is not a config file/directory
-    tmux switch-client -t $BASE_NAME
-  else # If $BASE_PATH is a config file/directory
-    tmux switch-client -t "config"
+  if [[ "$PATH_IS_DIR" = true ]]; then
+    if [[ "$PATH_IS_CONFIG" = false ]]; then
+      tmux switch-client -t $BASE_NAME
+    else
+      tmux switch-client -t "config"
+    fi
+  elif [[ "$PATH_IS_FILE" = true ]]; then
+    tmux switch-client -t $PARENT_NAME
   fi
 }
 
-open_directory_with_tmux ()
+open_directory ()
 {
   if [ "$KEYPRESS" = "enter" ]; then
-    cd $BASE_PATH
-  else
-    tmux send-keys -t $BASE_NAME.0 "$EDITOR ." ENTER
+    tmux send-keys -t $BASE_NAME.0 "$EDITOR" ENTER
+  elif [[ "$KEYPRESS" = "alt-g" ]]; then
+    grep_search
   fi
+  jump_to_open_session
 }
 
-open_file_with_tmux ()
+open_file ()
 {
   if [ "$KEYPRESS" = "enter" ]; then
-    cd $PARENT_PATH
-  else
     tmux send-keys -t $PARENT_NAME.0 "$EDITOR $BASE_NAME" ENTER
+  elif [[ "$KEYPRESS" = "alt-g" ]]; then
+    grep_search
   fi
-  tmux switch-client -t $PARENT_NAME # TODO fix this
+  jump_to_open_session
 }
 
-open_file_normally ()
-{
-  if [ "$KEYPRESS" = "enter" ]; then
-    true
-  else
-    $EDITOR $BASE_NAME
+grep_search () {
+
+  if [[ $PATH_IS_DIR ]]; then
+    grep_name="$BASE_PATH"
+    session_name="$BASE_NAME"
+  elif [[ $PATH_IS_FILE ]]; then
+    grep_name="$PARENT_PATH"
+    session_name="$PARENT_NAME"
+  fi
+
+  output=$(rg \
+    --line-number \
+    --no-column \
+    --no-heading \
+    --glob "!.git/*" \
+    "." \
+    "$grep_name" \
+    | awk -F  ":" '{print $1 " " $2 " " $3}' \
+    | fzf\
+      --expect "alt-enter,enter" \
+      --preview "batcat --color always {1} -H {2}" \
+    | xargs echo)
+
+  if [ -z "$output" ]; then
+    tmux kill-session -t $session_name
+    return
+  fi
+
+  read -r keypress file_path line <<< "${output}"
+  line_number=${line%% *}
+  parent_path=$(dirname $file_path)
+
+  if [[ "$keypress" = "enter" ]]; then
+    tmux send-keys -t $session_name.0 "$EDITOR -c :$line_number $file_path" ENTER
+  elif [[ "$keypress" = "alt-enter" ]]; then
+    if [[ "$parent_path" != "$grep_name" ]]; then
+      relative_path=${parent_path#"$grep_name"}
+      relative_path="${relative_path:1}"
+      tmux send-keys -t $session_name.0 "cd $relative_path" ENTER
+    fi
   fi
 }
 
-open_directory_normally ()
+main ()
 {
-  if [ "$KEYPRESS" = "enter" ]; then
-    true
-  else
-    $EDITOR .
-  fi
-}
-
-run_with_tmux ()
-{
-  start_new_session
   if [ -d $BASE_PATH ]; then
-    open_directory_with_tmux
+    PATH_IS_DIR=true
+    start_new_session
+    open_directory
   else
-    open_file_with_tmux
+    PATH_IS_FILE=true
+    start_new_session
+    open_file
   fi
 }
-
-run_normally ()
-{
-  if [ -d $BASE_PATH ]; then
-    cd $BASE_PATH
-    open_directory_normally
-  else
-    cd $PARENT_PATH
-    open_file_normally
-  fi
-}
-
-debug ()
-{
-  echo "Base path: $BASE_PATH"
-  echo "Base name: $BASE_NAME"
-  echo "Parent path: $PARENT_PATH"
-  echo "Parent dir: $PARENT_NAME"
-}
-
-if [[ -z "$TMUX" ]]; then # If Tmux is running...
-  tmux start-server; run_with_tmux
-else
-  run_normally
-fi
-
-# TODO figure out what to do with this
-# tmux_off ()
-# {
-#     if [ -d $name ]; then
-#       cd $name
-#       if [ "$action" = "enter" ]; then
-#         return
-#       fi
-#
-#       if [ -z $1 ]; then
-#         $editor
-#       else
-#         $1
-#       fi
-#
-#     else
-#       cd $dir_path
-#       if [ "$action" = "enter" ]; then
-#         return
-#       fi
-#
-#       if [ -z $1 ]; then
-#         $editor $file
-#       else
-#         $1 $file
-#       fi
-#     fi
-# }
+main
