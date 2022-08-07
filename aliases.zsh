@@ -12,12 +12,8 @@ alias fin="cd ~/Programming/projects/py_finance/"
 alias stats="cd /mnt/c/Users/larry/nyu/stats"
 alias wai="cd /mnt/c/Users/larry/nyu/WAI"
 alias life="cd ~/Life"
-# alias life="cd /mnt/c/Users/larry/life_design"
 alias home="cd /mnt/c/Users/larry"
 alias zshrc="cd ~/.config/zsh && nvim"
-alias nvimrc="cd ~/.config/nvim && nvim"
-alias luavim="cd ~/.config/nvim.new"
-alias maps="cd /mnt/c/Users/larry/keymaps"
 alias down='cd /mnt/c/Users/larry/Downloads'
 alias doc='cd /mnt/c/Users/larry/OneDrive/Documents'
 alias desk='cd /mnt/c/Users/larry/OneDrive/Desktop'
@@ -34,7 +30,7 @@ alias tt="ttyper"
 alias tsource="tmux source ~/.config/tmux/tmux.conf"
 alias tconf="cd ~/.config/tmux/ && nvim tmux.conf"
 alias tp="Typora.exe"
-alias tfux="source ~/.config/zsh/tfux"
+alias tfux="source ~/.local/bin/tfux"
 
 # -----------------------------------------------------------------
 # Run Files
@@ -58,7 +54,7 @@ alias distro='cat /etc/*-release'
 alias cat="batcat"
 alias ls="exa"
 alias ll="exa -l"
-# alias tree="exa -T --icons"
+alias tree="exa -T --icons"
 #alias cd="z"
 
 # -----------------------------------------------------------------
