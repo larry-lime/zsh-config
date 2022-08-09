@@ -16,7 +16,7 @@ alias home="cd /mnt/c/Users/larry"
 alias down='cd /mnt/c/Users/larry/Downloads'
 alias doc='cd /mnt/c/Users/larry/OneDrive/Documents'
 alias desk='cd /mnt/c/Users/larry/OneDrive/Desktop'
-alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # -----------------------------------------------------------------
 # Aliases to Launch Applications
