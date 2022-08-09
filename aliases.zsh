@@ -31,6 +31,9 @@ alias tconf="cd ~/.config/tmux/ && nvim tmux.conf"
 alias tp="Typora.exe"
 alias t="/usr/local/bin/tmux"
 alias tnav="source $HOME/.local/bin/tnav"
+alias lg="lazygit"
+alias chrome="/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe"
+
 
 # -----------------------------------------------------------------
 # Run Files
@@ -60,16 +63,6 @@ alias tree="exa -T --icons"
 # -----------------------------------------------------------------
 # Git Aliases
 # -----------------------------------------------------------------
-alias gb='gbranch'
-alias gc='gcheck'
-alias gadd='git add'
-alias gcom='git commit'
-alias gclone='git clone'
-alias glog='git log'
-alias gadd= 'git add'
-alias grad='git remote add origin'
-alias gmerge= 'git merge'
 alias github= 'brave.exe "https://github.com/larry-lime"' 
-alias git_learn='cd /mnt/c/Users/larry/nyu/ics/git_learn'
 alias gtoken='nvim "/mnt/c/Users/larry/nyu/ics/git_learn/token.txt"'
-alias git_del='rm -rf .git'
+alias gls='git ls-tree --full-tree --name-only -r HEAD'
