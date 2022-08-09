@@ -13,10 +13,10 @@ alias stats="cd /mnt/c/Users/larry/nyu/stats"
 alias wai="cd /mnt/c/Users/larry/nyu/WAI"
 alias life="cd ~/Life"
 alias home="cd /mnt/c/Users/larry"
-alias zshrc="cd ~/.config/zsh && nvim"
 alias down='cd /mnt/c/Users/larry/Downloads'
 alias doc='cd /mnt/c/Users/larry/OneDrive/Documents'
 alias desk='cd /mnt/c/Users/larry/OneDrive/Desktop'
+alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # -----------------------------------------------------------------
 # Aliases to Launch Applications
@@ -24,14 +24,13 @@ alias desk='cd /mnt/c/Users/larry/OneDrive/Desktop'
 alias word="winword.exe"
 alias explore="explorer.exe"
 alias ger="ranger"
-alias t="tmux"
 alias nv="nvim"
 alias tt="ttyper"
 alias tsource="tmux source ~/.config/tmux/tmux.conf"
 alias tconf="cd ~/.config/tmux/ && nvim tmux.conf"
 alias tp="Typora.exe"
 alias t="/usr/local/bin/tmux"
-alias tfux="source $HOME/.local/bin/tfux"
+alias tnav="source $HOME/.local/bin/tnav"
 
 # -----------------------------------------------------------------
 # Run Files

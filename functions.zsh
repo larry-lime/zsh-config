@@ -111,17 +111,6 @@ function cpath() {
     CLIP=$(pwd)
 }
 
-function mknote() {
-    FILE="$1.md"
-    if test -f "$FILE"; then
-        nvim $FILE
-    else
-        touch $FILE
-        echo "# $1" >> $FILE
-        nvim $FILE
-    fi
-}
-
 # -----------------------------------------------------------------
 # Personal Plugins
 # -----------------------------------------------------------------

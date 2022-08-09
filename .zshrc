@@ -29,7 +29,7 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # PATH="$PATH:/home/larrylime/.cargo/bin"
 
 export GOROOT=/usr/local/go-1.18.2
-export GOPATH=$HOME/Programming/golang/
+export GOPATH=$HOME/projects/golang/
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$GOPATH/bin
