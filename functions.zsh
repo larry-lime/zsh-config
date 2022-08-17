@@ -111,6 +111,14 @@ function cpath() {
     CLIP=$(pwd)
 }
 
+function copy() {
+    echo $1 | tr "\n" " " | clip.exe 
+}
+
+function generateREADMe() {
+    echo $1 | tr "\n" " " | clip.exe 
+}
+
 # -----------------------------------------------------------------
 # Terminal Applications & Tools
 # -----------------------------------------------------------------

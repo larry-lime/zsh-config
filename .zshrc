@@ -28,9 +28,16 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # PATH="$PATH:/home/larrylime"
 # PATH="$PATH:/home/larrylime/.cargo/bin"
 
+# Go
 export GOROOT=/usr/local/go-1.18.2
 export GOPATH=$HOME/projects/golang/
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/.npm-global/bin
+# Bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# bun completions
+[ -s "/home/larrylime/.bun/_bun" ] && source "/home/larrylime/.bun/_bun"
