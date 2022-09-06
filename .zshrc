@@ -22,7 +22,7 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 export EDITOR="nvim"
 export BROWSER="brave.exe"
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 #warning: be sure to add `/home/larrylime/.cargo/bin` to your PATH to be able to run the installed binaries
 # PATH="$PATH:/home/larrylime"

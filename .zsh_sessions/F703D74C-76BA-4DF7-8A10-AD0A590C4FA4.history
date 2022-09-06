@@ -1,0 +1,725 @@
+ls
+ls
+clear
+ls
+clera
+clear
+ls
+clear
+ls
+cd .config
+ls
+rmdir zsh
+git clone https://github.com/larry-lime/zsh-config.git
+brew install tmux
+brew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+ls
+brew
+ls
+mv zsh-config zsh
+ls
+ls
+ls
+cd ..
+ls
+nvim .zshenv
+source .zshenv
+clear
+source zsh/.zshrc
+ls
+source .config/zsh/.zshrc
+ls
+ls
+pwd
+cd .config/zsh
+ls
+nv
+ls
+nv aliases.zsh
+cd ..
+ls
+ls
+ls
+ls
+ls
+ls
+cd .config
+ls
+cd zsh
+nv .zshrc
+ls
+nvim .zprofile
+clear
+ls
+clear
+ls
+ls
+cd ~
+ls
+clear
+ls
+clear
+ls
+clear
+ls
+cd .config
+ls
+git clone https://github.com/larry-lime/nvim-config.git
+ls
+mv nvim-config nvim
+nv
+ls
+nv
+ls
+cd nvim
+ls
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+nv
+ls
+cd lua
+lss
+tree
+brew install exa
+brew instal tmux
+tmux
+clear
+ls
+cd ~
+ls
+cd .config
+ls
+ls
+cd ~/.local/share
+ls
+cd nvim
+ls
+cd site
+ls
+clear
+ls
+ls
+nv
+ls
+cd ..
+ls
+cd ~
+ls
+cd .config/nvim
+ls
+clear
+reset
+ls
+ls
+cd lua
+ls
+cd ..
+nv init.lua
+ls
+cd lua
+ls
+cd user
+ls
+grep . winbar
+grep winbar .
+grep -r winbar .
+nv options.lua
+nv
+nvim
+ls
+ls
+cd ..
+ls
+nvim --version
+ls
+cd ..
+ls
+fzf
+fzf | xargs nvim
+nv
+l
+ls
+fzf | xargs nvim
+fzf | xargs nvim
+ls
+cd lua
+ls
+cd user
+ls
+cd plugins.lua
+nv plugins.lua
+nv
+ls
+nv
+ls
+cd ..
+ls
+cd ..
+ls
+cd ..
+ls
+cd nvim
+ls
+rm -r *
+ls
+touch init.lua
+nv init.lua
+nv
+nv
+ls
+nv
+ls
+nv
+ls
+cd /.local/share
+ls
+ls
+cd .config
+ls
+cd nvim
+cd ..
+ls
+rm -r nvim
+rm -r -f nvim
+ls
+git clone https://github.com/larry-lime/nvim-config-lua.git
+mv nvim-config-lua nvim
+ls
+cd nvim
+ls
+nv
+ls
+clear
+ls
+cd ~
+ls
+ls
+cd ~/.local/share/nvim
+ls
+cd site
+ls
+cd pack
+ls
+rm -rf packer
+nv
+ls
+cd ~
+ls
+nvim
+ls
+cd n
+cd .cofig
+cd .config
+ls -a
+cd nvim
+ls
+ls -a
+nv
+nv
+ls
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+nv
+ls
+nv init.lua
+ls
+cd lua
+ls
+cd ..
+ls
+nv
+ls
+cd lua
+ls
+ls
+clear
+reset
+clear
+nv
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+nv
+ls
+cd /.local/share/nvim/site
+ls
+cd ~/.local/share/nvim/site/
+ls
+cd pack
+ls
+cd packer
+ls
+cd start
+ls
+nv packer.nvim
+ls
+cd ../..
+ls
+rm -rf packer
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+ls
+cd packer
+ls
+cd start
+ls
+cd packer.nvim
+ls
+nv
+ls
+cd ../..
+ls
+nv
+ls
+ls
+ls
+cd ~
+ls
+cd .config
+ls
+cd nvim
+ls
+cd lua
+ls
+cd user
+ls
+nv plugins.lua
+nv
+ls
+nv plugins.lua
+ls
+nv plugins.lua
+ls
+nv plugins.lua
+nv plugins.lua
+ls
+cd ..
+ls
+cd ..
+ls
+nv init.lua
+vi init.lua
+nv
+ls
+cd init.lua
+nv init.lua
+vi init.lua
+nv init.lua
+vi init.lua
+nv init.lua
+ls
+clear
+lc
+ls
+clear
+clra
+clear
+ls
+clear
+brew install rg
+ls
+clear
+reset
+ls
+ls
+ls
+cd dotfiles
+ls
+cd ..
+ls
+cd Public
+ls
+cd ..
+ls
+md Projects
+cd P
+cd Projects
+ls
+clear
+exit
+ls
+ls
+ls
+vi tmux.conf
+clear
+ls
+ls
+t
+cd ~
+ls
+lsls
+ls
+exit
+ls
+tsource
+ls
+ls
+clear
+clear
+reset
+clera
+ls
+clear
+reset
+cd ~
+touch .hushlogin
+clear
+reset
+ls
+clear
+tmux --version
+tmux version
+cd ~
+cd Downloads
+tar -zxf tmux-*.tar.gz\
+
+ls
+tar -zxf tmux-*.tar.gz\
+
+rm *
+ls
+rm -r * 
+ls
+git clone https://github.com/tmux/tmux.git\
+
+cd tmux
+sh autogen.sh
+brew install autoconf automake libtool\
+
+sh autogen.sh\
+
+./configure && make\
+
+tmux version
+tmux -V
+clear
+t
+where tmux
+cd ~
+ls
+touch .tmux.conf
+ls
+git clone https://github.com/larry-lime/dotfiles.git
+ls
+cd dotfiles
+ls
+ls
+cd ..
+ls
+cd .config
+ls
+ls -a
+ls
+cd ..
+ls
+tree
+clear
+ls
+clera
+cd ~
+nv
+clear
+ls
+clera
+ls
+clear
+ls
+clear
+ls
+vi .tmux.conf
+ls
+cd ~/.local/share/nvim/site/
+ls
+cd pack
+ls
+rm -rf packer
+nv
+ls
+rm -rf packer
+ls
+cd ~
+ls
+cd nvim
+ls
+cd .config/nvim
+ls
+cd ..
+ls
+cd -
+ls
+nv
+nv
+ls
+ls
+cd ~
+ls
+cd .config
+ls
+cd zsh
+ls
+vi aliases.zsh
+source .config/zsh/.zshrc
+ls
+cd ..
+ls
+cd -
+source .zshrc
+ls
+clear
+ls
+clear
+ls
+ls
+clear
+ls
+clear
+ls
+tree
+clera
+ls
+ls
+vi aliases.zsh
+where tmux
+where tmux
+tmux -V
+cd ~
+cd /opt/homebrew/bin
+ls
+cd tmux
+s
+ls
+cd -
+ls
+clear
+ls
+where tmux
+cd .config
+ls
+cd zsh
+vi aliases.zsh
+source .zshrc
+clear
+t
+clear
+ls
+clear
+ls
+ls
+echo $HOME
+ls
+cd ~
+cd .config
+ls
+cd zsh
+ls
+cd ..
+ls
+md tmux
+cd tmux
+touch tmux.conf
+vi tmux.conf
+cd ..
+cd -
+ls
+touch keybinds.conf
+touch plugins.conf
+touch settings.conf
+touch statusbar.conf
+vi statusbar.conf
+clear
+ls
+vi s
+vi settings.conf
+ls
+brew install bat
+bat keybinds.conf
+ls
+bat keybinds.conf
+vi keybinds.conf
+ls
+cd ~
+cd z
+cd .config/zsh
+ls
+vi keybinds.zsh
+rg "cat"
+vi aliases.zsh
+source .zshrc
+ls
+cat keybinds.zsh
+cd ~
+cd .config/tmux
+ls
+cat plugins.conf
+cat keybinds.conf
+ls
+vi plugins.conf
+ls
+cat plugins.conf
+cat settings.conf
+ls
+cat tmux.conf
+cat statusbar.conf
+t
+t
+ls
+t
+ls
+cd tmux.conf
+ls
+vi tmux.conf
+ls
+clear
+t
+ls
+cd ~
+source .zshrc
+ls
+source .config/zsh/.zshrc
+t
+t
+ls
+cd ~
+cd .config/
+cd -
+cd .config/tmux
+ls
+rm s
+t
+ls
+vi tmux.conf
+tsource
+t
+ls
+ls
+clear
+ls
+cat settings.conf
+t a
+t
+clear
+ls
+cd ..
+ls
+exit
+ls
+ls
+clear
+ls
+ls
+clear
+clear
+ls
+vi plugins.conf
+tsource
+tsource
+ls
+ls -a
+ls
+vi plugins.conf
+tsource
+tmux source tmux.conf
+ls
+vi tmux.conf
+vi plugins.conf
+s
+ls
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+vi plugins.conf
+tsource
+tmux source ~/.tmux.conf
+ls
+t
+ls
+fzf
+cd /
+ls
+cd Applications
+ls
+./Visual\ Studio\ Code.app
+cd ~
+ls
+cd .config/tmux
+ls
+t
+ls
+ls
+t
+ls
+vi tmux.conf
+t
+vi settings.conf
+t
+vi tmux.conf
+t
+vi settings.conf
+nv
+clear
+ls
+vi tmux.conf
+t
+t
+reset
+reset
+t
+t
+t a
+t
+ls
+tmux source tmux.conf
+t
+t
+clear
+ls
+ls
+clear
+ls
+cd ~
+ls
+cd .config/tmux
+ls
+vi tmux.conf
+nv tmux.conf
+vi tmux.conf
+vi plugins.conf
+vi plugins.conf
+ls
+tree
+clear
+ls
+clear
+ls
+clear
+t
+clear
+ls
+ls
+clear
+ls
+cd P
+cd Projects
+ls
+ls
+ls
+cd ..
+ls
+clear
+ls
+cd .config/
+cd .config/
+cd -
+cd .config/tmux
+ls
+l
+ls
+clear
+t
+clear
+ls
+t
+ls
+clear
+ls
+clear
+ls
+clear
