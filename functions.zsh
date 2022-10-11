@@ -1,6 +1,6 @@
 #     ______                 __  _                 
 #    / ____/_  ______  _____/ /_(_)___  ____  _____
-#   / /_  / / / / __ \/ ___/ __/ / __ \/ __ \/ ___/
+ #  / /_  / / / / __ \/ ___/ __/ / __ \/ __ \/ ___/
 #  / __/ / /_/ / / / / /__/ /_/ / /_/ / / / (__  ) 
 # /_/    \__,_/_/ /_/\___/\__/_/\____/_/ /_/____/
 
@@ -83,6 +83,14 @@ function ii() {
     fi
 }
 
+function tp() {
+  if [[ $1 ]]; then
+    open $1 -a Typora.app
+  else
+    open . -a Typora.app
+  fi
+}
+
 function ppy() {
     powershell.exe -c "python3 $1"
 }
@@ -107,47 +115,9 @@ function yy() {
 }
 
 function cpath() {
-    echo $(pwd) | tr "\n" " " | clip.exe 
-    CLIP=$(pwd)
-}
-
-function copy() {
-    echo $1 | tr "\n" " " | clip.exe 
-}
-
-function generateREADMe() {
-    echo $1 | tr "\n" " " | clip.exe 
+  pwd | pbcopy
 }
 
 # -----------------------------------------------------------------
 # Terminal Applications & Tools
 # -----------------------------------------------------------------
-
-function cow(){ # Cowsay: Create eye-catchy splash screen prompts
-    fortune | cowsay
-}
-
-function dragon(){ 
-    fortune | cowsay -f dragon
-}
-
-function user(){ #figlet utility to convert normal text to ASCII art
-    figlet -cl "larrylime"
-}
-
-function cpode() {
-    powershell.exe -c "code $1"
-}
-
-function btm() { 
-    powershell.exe -c "btm"
-}
-
-# -----------------------------------------------------------------
-# Git Features
-# -----------------------------------------------------------------
-
-function gopen() {
-    /mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe $(git config --get remote.origin.url)
-}
-

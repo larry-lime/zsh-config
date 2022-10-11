@@ -15,7 +15,7 @@ My very minimal personal and constantly updated zshell configuration for the wor
 7. [Plugins](#plugins)
 
 
-## Terminal 
+## Terminal
 ...
 
 ## Aliases

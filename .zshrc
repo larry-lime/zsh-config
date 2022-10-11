@@ -1,4 +1,5 @@
 # If you come from bash you might have to change your $PATH.
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export ZDOTDIR=$HOME/.config/zsh
 
 # Colors and Style
@@ -14,13 +15,12 @@ zsh_add_file "temp.zsh"
 zsh_add_file "keybinds.zsh"
 # zsh_add_file "fzf.zsh"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 
-export EDITOR="nvim"
-export BROWSER="brave.exe"
+export EDITOR="/usr/local/bin/nvim-macos/bin/nvim"
+export BROWSER="Brave.app"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -28,13 +28,6 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # PATH="$PATH:/home/larrylime"
 # PATH="$PATH:/home/larrylime/.cargo/bin"
 
-# Go
-export GOROOT=/usr/local/go-1.18.2
-export GOPATH=$HOME/projects/golang/
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$HOME/.npm-global/bin
 # Bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
