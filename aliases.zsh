@@ -19,15 +19,13 @@ alias nvim="/usr/local/bin/nvim-macos/bin/nvim"
 alias tt="taskwarrior-tui"
 alias tsource="tmux source ~/.config/tmux/tmux.conf"
 alias tconf="cd ~/.config/tmux/ && nvim tmux.conf"
-# TODO I have to fucking change this FUCK. I pretty much wasted my fucking money
-# alias tp="Typora.exe"
 alias t="/opt/homebrew/bin/tmux"
 alias tnav="source $HOME/.local/bin/tnav"
 alias lg="lazygit"
 alias hg="hugo"
 alias of="open . -a finder"
+alias dw="open ~/Downloads/ -a finder<CR>"
 alias ger="ranger"
-alias chrome="/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe"
 
 # -----------------------------------------------------------------
 # Run Files
