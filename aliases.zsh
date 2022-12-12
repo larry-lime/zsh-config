@@ -46,6 +46,7 @@ alias distro='cat /etc/*-release'
 alias cat="bat"
 alias ls="exa"
 alias ll="exa -l"
+alias la="exa -a"
 alias tree="exa -T --icons"
 alias hhstart="~/.local/bin/hardhat-boilerplate"
 alias config='/usr/bin/git --git-dir=/Users/lawrencelim/.cfg/ --work-tree=/Users/lawrencelim'
