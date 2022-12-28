@@ -14,8 +14,7 @@ alias doc="cd $HOME/Documents"
 # Aliases to Launch Applications
 # -----------------------------------------------------------------
 alias o="open"
-alias nv="/usr/local/bin/nvim-macos/bin/nvim"
-alias nvim="/usr/local/bin/nvim-macos/bin/nvim"
+alias nv="nvim"
 alias tt="taskwarrior-tui"
 alias tsource="tmux source ~/.config/tmux/tmux.conf"
 alias tconf="cd ~/.config/tmux/ && nvim tmux.conf"
