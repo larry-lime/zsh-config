@@ -19,7 +19,7 @@ zsh_add_file "keybinds.zsh"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 
-export EDITOR="/usr/local/bin/nvim-macos/bin/nvim"
+export EDITOR="nvim"
 export BROWSER="Brave.app"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
