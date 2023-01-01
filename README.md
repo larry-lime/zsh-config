@@ -1,49 +1,52 @@
 # Z-Shell Config
 
-**All configurations are not moved to .dotfiles repo**
+## Installation
 
-## My Config
-My very minimal personal and constantly updated zshell configuration for the world to see 🌎
+### Requirements
+- fzf: Command line fuzzy finder
+- bat: Cat command replacement
+- exa: ls replacement
+- ripgrep: better grep replacement
+- fd: Intuitive find replacement
 
-## Table of Contents
-1. [Terminal](#terminal)
-2. [Aliases](#aliases)
-3. [Functions](#functions)
-4. [Prompt](#prompt)
-5. [Vim-Mode](#vim-mode)
-6. [Temporary Functions](#temporary-functions)
-7. [Plugins](#plugins)
+#### macOs
+Homebrew
+```shell
+brew install fzf fd exa bat ripgrep
+```
 
+#### Ubuntu Linux
+fzf
+```shell
+sudo apt-get install fzf
+```
 
-## Terminal
-...
+bat
+```shell
+sudo apt install bat
+```
 
-## Aliases
-...
+fd
+```shell
+npm install -g fd-find
+```
+OR
+```shell
+cargo install fd-find
+```
 
-## Functions
-...
+ripgrep
+```shell
+cargo install ripgrep
+```
 
-## Prompt
-...
+exa
+```shell
+cargo install exa
+```
 
-## Vim-Mode
-...
-
-## Temporary Functions
-...
-
-## Plugins
-...
-
-# Neofetch: Terminal SplashScreen
-#neofetch
-
-# Display random messages
-#fortune
-
-# Cowsay: Create eye-catchy splash screen prompts
-#fortune | cowsay
-#fortune | cowsay -f dragon
-#figlet utility to convert normal text to ASCII art
-#figlet -cl "larrylime"
+### Config
+0. Delete any `~/.config/zsh` directory beforehand
+1. `cd ~/.config/ git clone https://github.com/larry-lime/zsh-config zsh`
+2. Run `source ~/.config/zsh` to install plugins
+3. Restart your terminal
