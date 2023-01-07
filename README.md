@@ -12,7 +12,7 @@
 #### macOs
 Homebrew
 ```shell
-brew install fzf bat ripgrep exa gh
+brew install fzf bat ripgrep exa gh tmux
 ```
 
 #### Ubuntu Linux
