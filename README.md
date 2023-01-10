@@ -12,7 +12,7 @@
 #### macOs
 Homebrew
 ```shell
-brew install fzf bat ripgrep exa gh tmux
+brew install fzf bat ripgrep fd exa gh tmux node lazygit
 ```
 
 #### Ubuntu Linux
