@@ -45,4 +45,3 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # bun completions
 [ -s "/home/larrylime/.bun/_bun" ] && source "/home/larrylime/.bun/_bun"
-
