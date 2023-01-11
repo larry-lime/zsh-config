@@ -1,6 +1,6 @@
 # Z-Shell Config
 
-<!-- ## Installation -->
+## Installation
 
 ### Requirements
 - [fzf](https://github.com/junegunn/fzf): Command line fuzzy finder
