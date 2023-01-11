@@ -15,6 +15,11 @@ Homebrew
 brew install fzf bat ripgrep fd exa gh tmux node lazygit
 ```
 
+#### Ubuntu on ARM
+```shell
+sudo apt install fzf fd-find 
+```
+
 #### Ubuntu Linux
 fzf
 ```shell
