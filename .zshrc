@@ -23,13 +23,12 @@ export EDITOR="nvim"
 
 if [[ "$(uname -o)" == 'GNU/Linux' ]]; then
   export BROWSER="firefox"
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 elif [[  "$(uname -o)" == 'Darwin'  ]]; then
   export BROWSER="Brave.app"
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-
-#warning: be sure to add `/home/larrylime/.cargo/bin` to your PATH to be able to run the installed binaries
 if [[ "$(uname -o)" == 'GNU/Linux' ]]; then
   PATH="$PATH:/home/larry"
   PATH="$PATH:/home/larry/.cargo/bin"
@@ -37,13 +36,3 @@ elif [[  "$(uname -o)" == 'catDarwin'  ]]; then
   PATH="$PATH:/home/larrylime"
   PATH="$PATH:/home/larrylime/.cargo/bin"
 fi
-
-# Bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# Rust
-source "$HOME/.cargo/env"
-
-# bun completions
-[ -s "/home/larrylime/.bun/_bun" ] && source "/home/larrylime/.bun/_bun"
