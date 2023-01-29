@@ -6,3 +6,4 @@ bindkey -s '^b' 'cd ..\n' # go to previous directory
 bindkey -s '^_' 'cd /\n' # go to root directory
 bindkey -s '\et' 'tmux\n' # launch tmux
 bindkey -s '^a' '**	' # fzf autocomplee
+bindkey -s '^z' 'fg\n' # fzf autocomplee
