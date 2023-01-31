@@ -121,6 +121,17 @@ function sys_open() {
   fi
 }
 
+function cat ()
+{
+  # If the first argument is a pdf file, use pdftotext command
+  # Else, use bat command
+  if [[ $1 == *.pdf ]]; then
+    pdftotext $1 - | bat
+  else
+    bat $@
+  fi
+}
+
 function cpath() {
   pwd | pbcopy
 }

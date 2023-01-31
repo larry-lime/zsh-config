@@ -42,7 +42,6 @@ alias md="mkdir"
 alias rd="rmdir"
 alias myip='curl http://ipecho.net/plain; echo'
 alias distro='cat /etc/*-release'
-alias cat="bat"
 alias ls="exa"
 alias ll="exa -l"
 alias la="exa -a"
