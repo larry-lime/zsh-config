@@ -22,9 +22,6 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 export EDITOR="nvim"
 
 if [[ "$(uname -o)" == 'GNU/Linux' ]]; then
-  export BROWSER="firefox"
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-elif [[  "$(uname -o)" == 'Darwin'  ]]; then
   export BROWSER="Brave.app"
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
