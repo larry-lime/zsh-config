@@ -15,7 +15,6 @@ alias doc="cd $HOME/Documents"
 # -----------------------------------------------------------------
 alias o="open"
 alias nv="nvim"
-alias tt="taskwarrior-tui"
 alias tsource="tmux source ~/.config/tmux/tmux.conf"
 alias tconf="cd ~/.config/tmux/ && nvim tmux.conf"
 alias t="tmux"
@@ -28,7 +27,6 @@ alias ger="ranger"
 
 # -----------------------------------------------------------------
 # Run Files
-# -----------------------------------------------------------------
 alias py="python3"
 alias ipython="python3 -m IPython"
 
