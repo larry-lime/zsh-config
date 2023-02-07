@@ -20,7 +20,7 @@ zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 
 export EDITOR="nvim"
-export BROWSER="firefox"
+export BROWSER="brave-browser"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 if [[ "$(uname -o)" == 'GNU/Linux' ]]; then
