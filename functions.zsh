@@ -122,7 +122,8 @@ function sys_open() {
 }
 
 function cpath() {
-  pwd | pbcopy
+  pwd | tr -d '\n' | xsel -ib
+
 }
 
 # -----------------------------------------------------------------
