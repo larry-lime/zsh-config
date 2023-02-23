@@ -21,10 +21,8 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 
 export EDITOR="nvim"
 
-if [[ "$(uname -o)" == 'GNU/Linux' ]]; then
-  export BROWSER="Brave.app"
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
+export BROWSER="Brave.app"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 
 #warning: be sure to add `/home/larrylime/.cargo/bin` to your PATH to be able to run the installed binaries

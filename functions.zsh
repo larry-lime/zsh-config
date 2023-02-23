@@ -142,3 +142,12 @@ function cpath() {
     echo $(realpath $1) | tr "\n" " " | pbcopy
   fi
 }
+
+function create_latex_homework()
+{
+  if [[ -z $1 ]]; then
+    cp ~/.dotfiles/.local/share/template.tex .
+  else
+    cp ~/.dotfiles/.local/share/template.tex $1
+  fi
+}
