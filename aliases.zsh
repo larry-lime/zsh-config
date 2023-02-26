@@ -35,6 +35,7 @@ alias ipython="python3 -m IPython"
 # -----------------------------------------------------------------
 # Command Aliases
 # -----------------------------------------------------------------
+alias md5="md5sum"
 alias cl="clear"
 alias cf="cfile"
 alias so="source ~/.config/zsh/.zshrc"

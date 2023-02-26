@@ -122,7 +122,11 @@ function sys_open() {
 }
 
 function cpath() {
-  pwd | tr -d '\n' | xsel -ib
+  if [[ -z $1 ]]; then
+    pwd | tr -d '\n' | xsel -ib
+  else
+    realpath $1 | tr -d '\n' | xsel -ib
+  fi
 
 }
 
