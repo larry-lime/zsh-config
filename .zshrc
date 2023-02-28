@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # If you come from bash you might have to change your $PATH.
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export ZDOTDIR=$HOME/.config/zsh
@@ -34,11 +36,11 @@ elif [[  "$(uname -o)" == 'catDarwin'  ]]; then
 fi
 
 # Bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# export BUN_INSTALL="$HOME/.bun"
+# export PATH="$BUN_INSTALL/bin:$PATH"
 
 # bun completions
-[ -s "/home/larrylime/.bun/_bun" ] && source "/home/larrylime/.bun/_bun"
+# [ -s "/home/larrylime/.bun/_bun" ] && source "/home/larrylime/.bun/_bun"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -53,4 +55,6 @@ else
     fi
 fi
 unset __conda_setup
-# <<< conda initialize <<<
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
