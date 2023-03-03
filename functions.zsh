@@ -151,3 +151,7 @@ function create_latex_homework()
     cp ~/.dotfiles/.local/share/template.tex $1
   fi
 }
+
+function c(){
+  gcc $1 && ./a.out && rm a.out
+}
