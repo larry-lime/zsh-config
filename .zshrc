@@ -42,8 +42,5 @@ fi
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# Rust
-source "$HOME/.cargo/env"
-
 # bun completions
 [ -s "/home/larrylime/.bun/_bun" ] && source "/home/larrylime/.bun/_bun"

@@ -121,10 +121,37 @@ function sys_open() {
   fi
 }
 
-function cpath() {
-  pwd | pbcopy
+function cat ()
+{
+  # If the first argument is a pdf file, use pdftotext command
+  # Else, use bat command
+  if [[ $1 == *.pdf ]]; then
+    pdftotext $1 - | bat
+  else
+    bat $@
+  fi
 }
 
-# -----------------------------------------------------------------
-# Terminal Applications & Tools
-# -----------------------------------------------------------------
+function cpath() {
+  # If there are no arguments
+  if [[ $# -eq 0 ]]; then
+    # Copy the current path
+    echo $(pwd) | tr "\n" " " | pbcopy
+  else
+    # Copy the path of the first argument
+    echo $(realpath $1) | tr "\n" " " | pbcopy
+  fi
+}
+
+function create_latex_homework()
+{
+  if [[ -z $1 ]]; then
+    cp ~/.dotfiles/.local/share/template.tex .
+  else
+    cp ~/.dotfiles/.local/share/template.tex $1
+  fi
+}
+
+function c(){
+  gcc $1 && ./a.out && rm a.out
+}
