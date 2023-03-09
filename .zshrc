@@ -1,5 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # If you come from bash you might have to change your $PATH.
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export ZDOTDIR=$HOME/.config/zsh
@@ -25,22 +23,8 @@ export EDITOR="nvim"
 
 export BROWSER="Brave.app"
 eval "$(/opt/homebrew/bin/brew shellenv)"
-
-#warning: be sure to add `/home/larrylime/.cargo/bin` to your PATH to be able to run the installed binaries
-if [[ "$(uname -o)" == 'GNU/Linux' ]]; then
-  PATH="$PATH:/home/larry"
-  PATH="$PATH:/home/larry/.cargo/bin"
-elif [[  "$(uname -o)" == 'catDarwin'  ]]; then
-  PATH="$PATH:/home/larrylime"
-  PATH="$PATH:/home/larrylime/.cargo/bin"
-fi
-
-# Bun
-# export BUN_INSTALL="$HOME/.bun"
-# export PATH="$BUN_INSTALL/bin:$PATH"
-
-# bun completions
-# [ -s "/home/larrylime/.bun/_bun" ] && source "/home/larrylime/.bun/_bun"
+PATH="$PATH:/home/larrylime"
+PATH="$PATH:/home/larrylime/.cargo/bin"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
