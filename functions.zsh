@@ -153,5 +153,5 @@ function create_latex_homework()
 }
 
 function c(){
-  gcc $1 && ./a.out && rm a.out
+  gcc -Wall $1 && ./a.out && rm a.out
 }
