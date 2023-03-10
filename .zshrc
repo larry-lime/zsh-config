@@ -1,6 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
-
 # If you come from bash you might have to change your $PATH.
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export ZDOTDIR=$HOME/.config/zsh
@@ -19,7 +16,7 @@ zsh_add_file "vim-mode.zsh"
 # zsh_add_file "fzf.zsh"
 
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
-# zsh_add_plugin "zsh-users/zsh-autosuggestions"
+zsh_add_plugin "zsh-users/zsh-autosuggestions"
 
 export EDITOR="nvim"
 export BROWSER="Brave.app"
@@ -40,6 +37,3 @@ else
     fi
 fi
 unset __conda_setup
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
