@@ -7,3 +7,6 @@ bindkey -s '^_' 'cd /\n' # go to root directory
 bindkey -s '\et' 'tmux\n' # launch tmux
 bindkey -s '^a' '**	' # fzf autocomplee
 bindkey -s '^z' 'fg\n' # fzf autocomplee
+
+# Enable shift tab to do reverse select
+bindkey '^[[Z' reverse-menu-complete
