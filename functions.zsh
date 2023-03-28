@@ -155,3 +155,22 @@ function create_latex_homework()
 function c(){
   gcc -Wall $1 && ./a.out && rm a.out
 }
+
+function code()
+{
+  if [[ -z $1 ]]; then
+    open . -a Vscode.app
+  else
+    open $1 -a Vscode.app
+    
+  fi
+}
+
+function trash ()
+{
+  if [[ -z $@ ]]; then
+    cd $HOME/.Trash/
+  else
+    mv $@ $HOME/.Trash/
+  fi
+}

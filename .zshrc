@@ -23,6 +23,7 @@ export BROWSER="Brave.app"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 PATH="$PATH:/home/larrylime"
 PATH="$PATH:/home/larrylime/.cargo/bin"
+PATH="$PATH:/Users/lawrencelim/go/bin"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
