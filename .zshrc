@@ -20,6 +20,7 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 
 export EDITOR="nvim"
 export BROWSER="Brave.app"
+export GCLI=false # Global state var to lazy load Github Copilot CLI
 eval "$(/opt/homebrew/bin/brew shellenv)"
 PATH="$PATH:/home/larrylime"
 PATH="$PATH:/home/larrylime/.cargo/bin"

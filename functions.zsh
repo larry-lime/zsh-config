@@ -174,3 +174,21 @@ function trash ()
     mv $@ $HOME/.Trash/
   fi
 }
+
+function what-the-shell ()
+{
+  source $HOME/.dotfiles/github-cli/lazy-load.sh
+  copilot_what-the-shell $@
+}
+
+function git-assist ()
+{
+  source $HOME/.dotfiles/github-cli/lazy-load.sh
+  copilot_git-assist $@
+}
+
+function gh-assist ()
+{
+  source $HOME/.dotfiles/github-cli/lazy-load.sh
+  copilot_what-the-shell $@
+}
