@@ -1,5 +1,6 @@
-# If you come from bash you might have to change your $PATH.
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
+
 export ZDOTDIR=$HOME/.config/zsh
 
 # Colors and Style
