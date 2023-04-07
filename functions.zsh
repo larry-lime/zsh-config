@@ -136,10 +136,10 @@ function cpath() {
   # If there are no arguments
   if [[ $# -eq 0 ]]; then
     # Copy the current path
-    echo $(pwd) | tr "\n" " " | pbcopy
+    echo $(pwd) | tr "\n" " " | xclip -selection clipboard
   else
     # Copy the path of the first argument
-    echo $(realpath $1) | tr "\n" " " | pbcopy
+    echo $(realpath $1) | tr "\n" " " | xclip -selection clipboard
   fi
 }
 
