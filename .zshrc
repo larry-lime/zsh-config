@@ -18,6 +18,9 @@ zsh_add_file "vim-mode.zsh"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 
+# Export foundry path
+export PATH="$PATH:/Users/lawrencelim/.foundry/bin"
+
 export EDITOR="nvim"
 export BROWSER="Brave.app"
 export GCLI=false # Global state var to lazy load Github Copilot CLI
