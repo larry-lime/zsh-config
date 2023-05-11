@@ -114,13 +114,6 @@ function yy() {
     CLIP=$1
 }
 
-function sys_open() {
-  output="$(fzf)"
-  if [[ ! -z $output ]]; then
-    open $output
-  fi
-}
-
 function cat ()
 {
   # If the first argument is a pdf file, use pdftotext command
