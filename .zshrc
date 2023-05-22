@@ -1,5 +1,4 @@
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export ZDOTDIR=$HOME/.config/zsh
 export FZF_DEFAULT_OPTS=" \
