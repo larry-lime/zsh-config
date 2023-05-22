@@ -30,3 +30,5 @@ elif [[  "$(uname -o)" == 'catDarwin'  ]]; then
   PATH="$PATH:/home/larrylime"
   PATH="$PATH:/home/larrylime/.cargo/bin"
 fi
+
+export PATH="/home/larrylime/anaconda3/bin:$PATH"
