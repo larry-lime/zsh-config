@@ -1,5 +1,6 @@
-# If you come from bash you might have to change your $PATH.
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
+
 export ZDOTDIR=$HOME/.config/zsh
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
@@ -28,7 +29,6 @@ export PATH="$PATH:/Users/lawrencelim/.foundry/bin"
 export EDITOR="nvim"
 export BROWSER="brave-browser"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
 if [[ "$(uname -o)" == 'GNU/Linux' ]]; then
   PATH="$PATH:/home/larry"
   PATH="$PATH:/home/larry/.cargo/bin"

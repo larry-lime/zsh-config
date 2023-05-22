@@ -121,14 +121,6 @@ function sys_open() {
   fi
 }
 
-function cpath() {
-  if [[ -z $1 ]]; then
-    pwd | tr -d '\n' | xsel -ib
-  else
-    realpath $1 | tr -d '\n' | xsel -ib
-  fi
-}
-
 function cat ()
 {
   # If the first argument is a pdf file, use pdftotext command
@@ -137,6 +129,17 @@ function cat ()
     pdftotext $1 - | bat
   else
     bat $@
+  fi
+}
+
+function cpath() {
+  # If there are no arguments
+  if [[ $# -eq 0 ]]; then
+    # Copy the current path
+    echo $(pwd) | tr "\n" " " | xclip -selection clipboard
+  else
+    # Copy the path of the first argument
+    echo $(realpath $1) | tr "\n" " " | xclip -selection clipboard
   fi
 }
 
