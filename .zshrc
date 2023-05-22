@@ -27,6 +27,8 @@ export PATH="$PATH:/Users/lawrencelim/.foundry/bin"
 
 export EDITOR="nvim"
 export BROWSER="brave-browser"
+export GCLI=false # Global state var to lazy load Github Copilot CLI
+
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 if [[ "$(uname -o)" == 'GNU/Linux' ]]; then
   PATH="$PATH:/home/larry"
