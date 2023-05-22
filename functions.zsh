@@ -128,8 +128,63 @@ function cpath() {
     realpath $1 | tr -d '\n' | xsel -ib
   fi
 
+function cat ()
+{
+  # If the first argument is a pdf file, use pdftotext command
+  # Else, use bat command
+  if [[ $1 == *.pdf ]]; then
+    pdftotext $1 - | bat
+  else
+    bat $@
+  fi
 }
 
-# -----------------------------------------------------------------
-# Terminal Applications & Tools
-# -----------------------------------------------------------------
+function create_latex_homework()
+{
+  if [[ -z $1 ]]; then
+    cp ~/.dotfiles/.local/share/template.tex .
+  else
+    cp ~/.dotfiles/.local/share/template.tex $1
+  fi
+}
+
+function c(){
+  gcc -Wall $1 && ./a.out && rm a.out
+}
+
+function code()
+{
+  if [[ -z $1 ]]; then
+    open . -a Vscode.app
+  else
+    open $1 -a Vscode.app
+    
+  fi
+}
+
+function trash ()
+{
+  if [[ -z $@ ]]; then
+    cd $HOME/.Trash/
+  else
+    mv $@ $HOME/.Trash/
+  fi
+}
+
+function what-the-shell ()
+{
+  source $HOME/.dotfiles/github-cli/lazy-load.sh
+  copilot_what-the-shell $@
+}
+
+function git-assist ()
+{
+  source $HOME/.dotfiles/github-cli/lazy-load.sh
+  copilot_git-assist $@
+}
+
+function gh-assist ()
+{
+  source $HOME/.dotfiles/github-cli/lazy-load.sh
+  copilot_what-the-shell $@
+}

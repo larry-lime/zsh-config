@@ -15,10 +15,11 @@ alias doc="cd $HOME/Documents"
 # -----------------------------------------------------------------
 alias o="open"
 alias nv="nvim"
-alias tt="taskwarrior-tui"
 alias tsource="tmux source ~/.config/tmux/tmux.conf"
 alias tconf="cd ~/.config/tmux/ && nvim tmux.conf"
 alias t="tmux"
+alias st="$HOME/.dotfiles/.local/bin/start_tmux"
+alias start-tmux="$HOME/.dotfiles/.local/bin/start_tmux"
 alias tnav="source $HOME/.local/bin/tnav"
 alias lg="lazygit"
 alias hg="hugo"
@@ -28,7 +29,6 @@ alias ger="ranger"
 
 # -----------------------------------------------------------------
 # Run Files
-# -----------------------------------------------------------------
 alias py="python3"
 alias ipython="python3 -m IPython"
 
@@ -43,8 +43,10 @@ alias md="mkdir"
 alias rd="rmdir"
 alias myip='curl http://ipecho.net/plain; echo'
 alias distro='cat /etc/*-release'
-alias cat="bat"
 alias ls="exa"
 alias ll="exa -l"
 alias la="exa -a"
 alias tree="exa -T --icons"
+alias \?\?="what-the-shell"
+alias git\?="git-assist"
+alias gh\?="gh-assist"
