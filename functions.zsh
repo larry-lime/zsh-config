@@ -185,3 +185,9 @@ function gh-assist ()
   source $HOME/.dotfiles/github-cli/lazy-load.sh
   copilot_what-the-shell $@
 }
+
+function docker_start ()
+{
+  sudo ln -s ~/Library/Containers/com.docker.docker/Data/docker.raw.sock /var/run/docker.sock
+  DOCKER_HOST=unix:///var/run/docker.sock docker ps # test that it works using linked socket file
+}
