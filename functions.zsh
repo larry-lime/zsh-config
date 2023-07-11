@@ -118,8 +118,11 @@ function cat ()
 {
   # If the first argument is a pdf file, use pdftotext command
   # Else, use bat command
+  
   if [[ $1 == *.pdf ]]; then
     pdftotext $1 - | bat
+  elif [[ $1 == *.docx ]]; then
+    textutil -stdout -cat txt $1 | bat
   else
     bat $@
   fi
@@ -152,9 +155,9 @@ function c(){
 function code()
 {
   if [[ -z $1 ]]; then
-    open . -a Vscode.app
+    open . -a Visual\ Studio\ Code\ -\ Insiders.app
   else
-    open $1 -a Vscode.app
+    open $1 -a Visual\ Studio\ Code\ -\ Insiders.app
     
   fi
 }
