@@ -18,6 +18,6 @@ zstyle ':vcs_info:git:*' formats " %{$fg_bold[yellow]%}[%b]"
 # Set up the prompt (with git branch name)
 setopt PROMPT_SUBST
 PROMPT="%B%{$fg_bold[red]%}[%n] %{$fg_bold[cyan]%}[%1d]" 
-PROMPT+="\$vcs_info_msg_0_ » "
-#PROMPT+="\$vcs_info_msg_0_ ⚡"
-#RPS1="%{$fg_bold[white]%}[%m]"
+PROMPT+="\$vcs_info_msg_0_ ⚡"
+# PROMPT+="\$vcs_info_msg_0_ » "
+# RPS1="%{$fg_bold[white]%}[%m]"
