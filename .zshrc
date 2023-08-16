@@ -39,4 +39,3 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 PATH="$PATH:/Users/lawrencelim/go/bin"
 
 eval "$(starship init zsh)"
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
