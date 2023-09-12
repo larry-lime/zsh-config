@@ -148,10 +148,6 @@ function create_latex_homework()
   fi
 }
 
-function c(){
-  gcc -Wall $1 && ./a.out && rm a.out
-}
-
 function code()
 {
   if [[ -z $1 ]]; then

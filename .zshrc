@@ -39,3 +39,6 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 PATH="$PATH:/Users/lawrencelim/go/bin"
 
 eval "$(starship init zsh)"
+
+# Export Colima Docker Host
+export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
