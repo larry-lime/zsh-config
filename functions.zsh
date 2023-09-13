@@ -148,16 +148,6 @@ function create_latex_homework()
   fi
 }
 
-function code()
-{
-  if [[ -z $1 ]]; then
-    open . -a Visual\ Studio\ Code\ -\ Insiders.app
-  else
-    open $1 -a Visual\ Studio\ Code\ -\ Insiders.app
-    
-  fi
-}
-
 function trash ()
 {
   if [[ -z $@ ]]; then
