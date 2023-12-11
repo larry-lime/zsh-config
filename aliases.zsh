@@ -13,6 +13,7 @@ alias ll="exa -l -snew"
 alias la="exa -a"
 alias tree="exa -T --icons"
 alias cat="bat"
+alias cd="zi"
 
 # ------------------------
 # SHORTENED SHELL COMMANDS
