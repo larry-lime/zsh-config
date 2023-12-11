@@ -1,18 +1,20 @@
-#    ___    ___
-#    /   |  / (_)___ _________  _____
-#   / /| | / / / __ `/ ___/ _ \/ ___/
-#  / ___ |/ / / /_/ (__  )  __(__  )
-# /_/  |_/_/_/\__,_/____/\___/____/
+#     _    _ _
+#    / \  | (_) __ _ ___  ___  ___
+#   / _ \ | | |/ _` / __|/ _ \/ __|
+#  / ___ \| | | (_| \__ \  __/\__ \
+# /_/   \_\_|_|\__,_|___/\___||___/
 
-# -----------------------------------------------------------------
-# File Shortcuts
-# -----------------------------------------------------------------
+# --------------
+# FILE SHORTCUTS
+# --------------
+
 alias down="cd $HOME/Downloads"
 alias doc="cd $HOME/Documents"
 
-# -----------------------------------------------------------------
-# Aliases to Launch Applications
-# -----------------------------------------------------------------
+# ------------------------------
+# ALIASES TO LAUNCH APPLICATIONS
+# ------------------------------
+
 alias o="open"
 alias nv="nvim"
 alias tsource="tmux source ~/.config/tmux/tmux.conf"
@@ -26,15 +28,15 @@ alias hg="hugo"
 alias of="open . -a finder"
 alias dw="open ~/Downloads/ -a finder<CR>"
 alias ger="ranger"
+alias sep="/Users/lawrencelim/Scripts/generate-separator.sh"
 
-# -----------------------------------------------------------------
-# Run Files
 alias py="python3"
 alias ipython="python3 -m IPython"
 
-# -----------------------------------------------------------------
-# Command Aliases
-# -----------------------------------------------------------------
+# ---------------
+# COMMAND ALIASES
+# ---------------
+
 alias cl="clear"
 alias cf="cfile"
 alias so="source ~/.config/zsh/.zshrc"
