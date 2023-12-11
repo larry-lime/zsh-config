@@ -2,7 +2,7 @@
 # |  ___|   _ _ __   ___| |_(_) ___  _ __  ___
 # | |_ | | | | '_ \ / __| __| |/ _ \| '_ \/ __|
 # |  _|| |_| | | | | (__| |_| | (_) | | | \__ \
-# |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
+    # |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
 
 # --------------
 # PLUGIN MANAGER
@@ -106,28 +106,9 @@ function ccont() {
     fi
 }
 
-function cfile() {
-    CLIP=$(realpath $1)
-    echo $CLIP | tr "\n" " " | clip.exe
-}
-
 function yy() {
     echo $1 | tr "\n" " " | clip.exe
     CLIP=$1
-}
-
-function cat ()
-{
-    # If the first argument is a pdf file, use pdftotext command
-    # Else, use bat command
-
-    if [[ $1 == *.pdf ]]; then
-        pdftotext $1 - | bat
-    elif [[ $1 == *.docx ]]; then
-        textutil -stdout -cat txt $1 | bat
-    else
-        bat $@
-    fi
 }
 
 function cpath() {

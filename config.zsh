@@ -9,7 +9,6 @@
 # PATH VARIABLES
 # --------------
 
-# Export foundry path
 export PATH="$PATH:/Users/lawrencelim/.foundry/bin" # Foundry Path
 export PATH="/Users/lawrencelim/.local/bin:$PATH" # Poetry Path
 export PATH="$PATH:/Users/lawrencelim/go/bin" # Go Path
