@@ -2,7 +2,7 @@
 # |  ___|   _ _ __   ___| |_(_) ___  _ __  ___
 # | |_ | | | | '_ \ / __| __| |/ _ \| '_ \/ __|
 # |  _|| |_| | | | | (__| |_| | (_) | | | \__ \
-    # |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
+# |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
 
 # --------------
 # PLUGIN MANAGER
@@ -112,13 +112,14 @@ function yy() {
 }
 
 function cpath() {
-    # If there are no arguments
     if [[ $# -eq 0 ]]; then
-        # Copy the current path
-        echo $(pwd) | tr "\n" " " | pbcopy
+        echo $(pwd) | tr "\n" "/" | pbcopy
     else
-        # Copy the path of the first argument
-        echo $(realpath $1) | tr "\n" " " | pbcopy
+        if [[ -f $1 ]]; then
+            echo $(pwd)/$1 | tr "\n" " " | pbcopy
+        elif [[ -d $1 ]]; then
+            echo $(pwd)/$1 | tr "\n" "/" | pbcopy
+        fi
     fi
 }
 

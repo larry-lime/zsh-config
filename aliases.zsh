@@ -13,7 +13,7 @@ alias ll="exa -l -snew"
 alias la="exa -a"
 alias tree="exa -T --icons"
 alias cat="bat"
-alias cd="zi"
+# alias cd="z" # zoxide
 
 # ------------------------
 # SHORTENED SHELL COMMANDS
@@ -39,6 +39,7 @@ alias tsource="tmux source ~/.config/tmux/tmux.conf"
 alias tnav="source $HOME/.local/bin/tnav"
 alias sep="/Users/lawrencelim/Scripts/generate-separator.sh"
 alias so="source ~/.config/zsh/.zshrc"
+alias \#="cw ai"
 
 # ------------------
 # SHORTENED COMMANDS
@@ -51,6 +52,7 @@ alias lg="lazygit"
 alias py="python3"
 alias ipython="python3 -m IPython"
 alias code="code-insiders"
-alias \?\?="what-the-shell"
-alias git\?="git-assist"
-alias gh\?="gh-assist"
+
+alias \?\?="gh copilot suggest -t shell "
+alias git\?="gh copilot suggest -t git"
+alias gh\?="gh copilot suggest -t gh"
