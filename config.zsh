@@ -19,7 +19,7 @@ export PATH="$PATH:/Users/lawrencelim/go/bin" # Go Path
 # -----------
 
 export EDITOR="nvim"
-export BROWSER="Brave.app"
+export BROWSER="open -a Arc"
 export DOCKER_HOST="unix://$HOME/.colima/docker.sock" # Colima Docker Host
 export GCLI=false # Global state var to lazy load Github Copilot CLI
 
