@@ -35,7 +35,6 @@ alias ipython="python3 -m IPython"
 # -----------------------------------------------------------------
 # Command Aliases
 # -----------------------------------------------------------------
-alias md5="md5sum"
 alias cl="clear"
 alias cf="cfile"
 alias so="source ~/.config/zsh/.zshrc"
@@ -43,9 +42,8 @@ alias md="mkdir"
 alias rd="rmdir"
 alias myip='curl http://ipecho.net/plain; echo'
 alias distro='cat /etc/*-release'
-alias cat="bat"
 alias ls="exa"
-alias ll="exa -l"
+alias ll="exa -l -snew"
 alias la="exa -a"
 alias tree="exa -T --icons"
 alias \?\?="what-the-shell"
