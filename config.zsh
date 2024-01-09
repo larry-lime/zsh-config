@@ -13,6 +13,8 @@
 export PATH="$PATH:/Users/lawrencelim/.foundry/bin" # Foundry Path
 export PATH="/Users/lawrencelim/.local/bin:$PATH" # Poetry Path
 export PATH="$PATH:/Users/lawrencelim/go/bin" # Go Path
+export PATH="$PATH:/Users/lawrencelim/.local/share/bob/nvim-bin"
+
 
 # -----------
 # GLOBAL VARS
@@ -30,19 +32,3 @@ export GCLI=false # Global state var to lazy load Github Copilot CLI
 eval "$(/opt/homebrew/bin/brew shellenv)" # Homebrew Path
 eval "$(starship init zsh)" # Starship Prompt
 eval "$(zoxide init zsh)" # Zoxide
-
-# -------------
-# CODEWHISPERER
-# -------------
-
-# CodeWhisperer pre block. Keep at the top of this file.
-# [[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh"
-
-# Fig pre block. Keep at the top of this file.
-# [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
-
-# Fig post block. Keep at the bottom of this file.
-# [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
-
-# CodeWhisperer post block. Keep at the bottom of this file.
-# [[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh"

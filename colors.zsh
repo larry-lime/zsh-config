@@ -17,9 +17,8 @@
     # --color=marker:#dc8a78,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39"
 
 # Tokyo Night (Dark)
-# export FZF_DEFAULT_OPTS="
-#   --color=fg:#c0caf5,bg:#1a1b26,hl:#bb9af7
-#   --color=fg+:#c0caf5,bg+:#1a1b26,hl+:#7dcfff
-#   --color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff
-#   --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a
-#   "
+export FZF_DEFAULT_OPTS="
+  --color=fg:#c0caf5,bg:#1a1b26,hl:#bb9af7
+  --color=fg+:#c0caf5,bg+:#1a1b26,hl+:#7dcfff
+  --color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff
+  --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a"
