@@ -16,12 +16,18 @@ zstyle ':completion:*' menu select
 # ------------
 
 source "$ZDOTDIR/functions.zsh"
-zsh_add_file "config.zsh"
 zsh_add_file "aliases.zsh"
 zsh_add_file "vim-mode.zsh"
 zsh_add_file "colors.zsh"
 zsh_add_file "keybinds.zsh"
+# zsh_add_file "config.zsh"
 # zsh_add_file "prompt.zsh" # Disabled for Starship
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  zsh_add_file "macos_config.zsh"
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  zsh_add_file "linux_config.zsh"
+fi
 
 # -------
 # PLUGINS

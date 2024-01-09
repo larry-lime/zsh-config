@@ -106,22 +106,21 @@ function ccont() {
     fi
 }
 
-function yy() {
-    echo $1 | tr "\n" " " | clip.exe
-    CLIP=$1
-}
-
 function cpath() {
-    if [[ $# -eq 0 ]]; then
-        echo $(pwd) | tr "\n" "/" | pbcopy
-    else
-        if [[ -f $1 ]]; then
-            echo $(pwd)/$1 | tr "\n" " " | pbcopy
-        elif [[ -d $1 ]]; then
-            echo $(pwd)/$1 | tr "\n" "/" | pbcopy
-        fi
-    fi
-}
+    # use pbcopy if on mac and xclip if on linux
+    # if on macos, set the command to pbcopy elese set it to xclip
+      [[ $OSTYPE == "darwin"* ]] && alias copy='pbcopy' || alias copy='xclip -selection clipboard'
+
+      if [[ $# -eq 0 ]]; then
+          echo $(pwd) | tr "\n" " " | copy
+      else
+          if [[ -f $1 ]]; then
+              echo $(pwd)/$1 | tr "\n" " " | copy
+          elif [[ -d $1 ]]; then
+              echo $(pwd)/$1 | tr "\n" "/" | copy
+          fi
+      fi
+  }
 
 function create_latex_homework()
 {
