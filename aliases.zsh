@@ -46,6 +46,7 @@ alias \#="cw ai"
 # ------------------
 
 alias nv="nvim"
+alias leet="nvim leetcode.nvim"
 alias t="tmux"
 alias hg="hugo"
 alias lg="lazygit"
