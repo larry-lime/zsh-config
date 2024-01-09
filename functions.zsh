@@ -108,27 +108,18 @@ function ccont() {
 
 function cpath() {
     # use pbcopy if on mac and xclip if on linux
-    if [[ "$OSTYPE" == "darwin"* ]]; then
+    # if on macos, set the command to pbcopy elese set it to xclip
+      [[ $OSTYPE == "darwin"* ]] && alias copy='pbcopy' || alias copy='xclip -selection clipboard'
+
       if [[ $# -eq 0 ]]; then
-          echo $(pwd) | tr "\n" " " | pbcopy
+          echo $(pwd) | tr "\n" " " | copy
       else
           if [[ -f $1 ]]; then
-              echo $(pwd)/$1 | tr "\n" " " | pbcopy
+              echo $(pwd)/$1 | tr "\n" " " | copy
           elif [[ -d $1 ]]; then
-              echo $(pwd)/$1 | tr "\n" "/" | pbcopy
+              echo $(pwd)/$1 | tr "\n" "/" | copy
           fi
       fi
-    else
-      if [[ $# -eq 0 ]]; then
-          echo $(pwd) | tr "\n" " " | xclip -selection clipboard
-      else
-          if [[ -f $1 ]]; then
-              echo $(pwd)/$1 | tr "\n" " " | xclip -selection clipboard
-          elif [[ -d $1 ]]; then
-              echo $(pwd)/$1 | tr "\n" "/" | xclip -selection clipboard
-          fi
-      fi
-    fi
   }
 
 function create_latex_homework()
