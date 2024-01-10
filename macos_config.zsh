@@ -12,11 +12,13 @@
 
 export PATH="$PATH:/Users/lawrencelim/.foundry/bin" # Foundry Path
 export PATH="$PATH:/Users/lawrencelim/go/bin" # Go Path
+export PATH="$PATH:/Users/lawrencelim/.local/share/bob/nvim-bin" # Bob path
 
 # -----------
 # GLOBAL VARS
 # -----------
 
+export DYLD_LIBRARY_PATH="/opt/homebrew/lib/"
 export EDITOR="nvim"
 export BROWSER="open -a Arc"
 export DOCKER_HOST="unix://$HOME/.colima/docker.sock" # mColima Docker Host

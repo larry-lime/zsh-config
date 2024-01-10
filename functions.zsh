@@ -106,18 +106,20 @@ function ccont() {
     fi
 }
 
+# FIXME: So this works on linux
 function cpath() {
     # use pbcopy if on mac and xclip if on linux
     # if on macos, set the command to pbcopy elese set it to xclip
       [[ $OSTYPE == "darwin"* ]] && alias copy='pbcopy' || alias copy='xclip -selection clipboard'
 
+      # if OS is macos, then copy the path of the current directory
       if [[ $# -eq 0 ]]; then
-          echo $(pwd) | tr "\n" " " | copy
+          echo $(pwd) | tr "\n" " " | pbcopy
       else
           if [[ -f $1 ]]; then
-              echo $(pwd)/$1 | tr "\n" " " | copy
+              echo $(pwd)/$1 | tr "\n" " " | pbcopy
           elif [[ -d $1 ]]; then
-              echo $(pwd)/$1 | tr "\n" "/" | copy
+              echo $(pwd)/$1 | tr "\n" "/" | pbcopy
           fi
       fi
   }
