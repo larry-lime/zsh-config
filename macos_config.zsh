@@ -28,4 +28,4 @@ export DOCKER_HOST="unix://$HOME/.colima/docker.sock" # mColima Docker Host
 # -----
 
 eval "$(/opt/homebrew/bin/brew shellenv)" # Homebrew Path
-eval "$(starship init zsh)" # Starship Prompt
+# eval "$(starship init zsh)" # Starship Prompt
