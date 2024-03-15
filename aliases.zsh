@@ -36,7 +36,6 @@ alias doc="cd $HOME/Documents"
 # --------------------
 
 alias tsource="tmux source ~/.config/tmux/tmux.conf"
-alias tnav="source $HOME/.local/bin/tnav"
 alias sep="/Users/lawrencelim/Scripts/generate-separator.sh"
 alias so="source ~/.config/zsh/.zshrc"
 alias \#="cw ai"

@@ -10,9 +10,10 @@
 # PATH VARIABLES
 # --------------
 
-export PATH="$PATH:/Users/lawrencelim/.foundry/bin" # Foundry Path
-export PATH="$PATH:/Users/lawrencelim/go/bin" # Go Path
-export PATH="$PATH:/Users/lawrencelim/.local/share/bob/nvim-bin" # Bob path
+export PATH="$PATH:$HOME/.foundry/bin" # Foundry Path
+export PATH="$PATH:$HOME/go/bin" # Go Path
+export PATH="$PATH:$HOME/.local/bin" # Go Path
+export PATH="$PATH:$HOME.local/share/bob/nvim-bin" # Bob path
 
 # -----------
 # GLOBAL VARS
