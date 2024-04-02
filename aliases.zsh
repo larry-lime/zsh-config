@@ -35,6 +35,7 @@ alias doc="cd $HOME/Documents"
 # RUN AND SOURCE FILES
 # --------------------
 
+alias tnav="source tnav"
 alias tsource="tmux source ~/.config/tmux/tmux.conf"
 alias sep="/Users/lawrencelim/Scripts/generate-separator.sh"
 alias so="source ~/.config/zsh/.zshrc"
