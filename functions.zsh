@@ -154,6 +154,11 @@ function git-assist ()
     copilot_git-assist $@
 }
 
+function cd ()
+{
+  source /usr/bin/cd "$1" && exa
+}
+
 function gh-assist ()
 {
     source $HOME/.dotfiles/github-cli/lazy-load.sh
