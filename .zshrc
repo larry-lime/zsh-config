@@ -20,7 +20,8 @@ zsh_add_file "aliases.zsh"
 zsh_add_file "vim-mode.zsh"
 zsh_add_file "colors.zsh"
 zsh_add_file "keybinds.zsh"
-# zsh_add_file "prompt.zsh" # Starship disabled
+zsh_add_file "zoxide.zsh"
+zsh_add_file "prompt.zsh" # Starship disabled
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   zsh_add_file "macos_config.zsh"

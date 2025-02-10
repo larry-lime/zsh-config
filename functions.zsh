@@ -156,7 +156,9 @@ function git-assist ()
 
 function cd ()
 {
-  source /usr/bin/cd "$1" && exa
+  source /usr/bin/cd "$1"
+  eza
+  # echo $(pwd) | tr "\n" " " | pbcopy
 }
 
 function gh-assist ()

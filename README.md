@@ -6,7 +6,7 @@
 
 - [fzf](https://github.com/junegunn/fzf): Command line fuzzy finder
 - [bat](https://github.com/sharkdp/bat): Cat command replacement
-- [exa](https://github.com/ogham/exa): ls replacement
+- [eza](https://github.com/ogham/eza): ls replacement
 - [ripgrep](https://github.com/BurntSushi/ripgrep): better grep replacement
 - [fd](https://github.com/sharkdp/fd): Intuitive find alternative
 
@@ -15,7 +15,7 @@
 Homebrew
 
 ```shell
-brew install fzf bat ripgrep fd exa gh tmux node lazygit
+brew install fzf bat ripgrep fd eza gh tmux node lazygit
 ```
 
 #### Ubuntu on ARM
@@ -56,10 +56,10 @@ ripgrep
 cargo install ripgrep
 ```
 
-exa
+eza
 
 ```shell
-cargo install exa
+cargo install eza
 ```
 
 ### Config

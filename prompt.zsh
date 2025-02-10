@@ -1,27 +1,28 @@
-## autoload vcs and colors
-autoload -Uz vcs_info
-autoload -U colors && colors
-
-# enable only git 
-zstyle ':vcs_info:*' enable git 
-
-# setup a hook that runs before every ptompt. 
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
-setopt prompt_subst
-
-# add a function to check for untracked files in the directory.
-# from https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
-zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
-+vi-git-untracked(){
-    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-        git status --porcelain | grep '??' &> /dev/null ; then
-        hook_com[staged]+='!' # signify new files with a bang
+git_info() {
+    # Check if we're in a git repository
+    if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+        # Get the git root directory
+        local git_root=$(git rev-parse --show-toplevel)
+        # Get the current branch
+        local branch=$(git symbolic-ref --short HEAD 2> /dev/null || git rev-parse --short HEAD)
+        # Get the relative path from git root
+        local rel_path=${PWD#$git_root/}
+        
+        # If we're in the git root, just show the directory name
+        if [[ "$PWD" == "$git_root" ]]; then
+            echo "%F{cyan}$(basename $git_root)%f on %F{magenta} $branch%f"
+        else
+            echo "%F{cyan}$(basename $git_root)/$rel_path%f on %F{magenta} $branch%f"
+        fi
+    else
+        # If not in a git repo, just show the current directory
+        echo "%F{cyan}%~%f"
     fi
 }
 
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git:*' formats " %{$fg[blue]%}(%{$fg[red]%}%m%u%c%{$fg[yellow]%}%{$fg[magenta]%} %b%{$fg[blue]%})"
-
-PROMPT="%B%{$fg[blue]%}[%n%{$fg[red]%}$fg[blue]%}] %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )%{$fg[cyan]%}%c%{$reset_color%}"
-PROMPT+="\$vcs_info_msg_0_%{$reset_color%}%b "
+# Set the prompt
+setopt PROMPT_SUBST
+PROMPT='$(git_info)
+%F{green}➜ '
+# PROMPT='%F{cyan}%c %F{default}on %F{red} ${vcs_info_msg_0_}%f
+# %F{green}➜ '

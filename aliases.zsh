@@ -8,12 +8,12 @@
 # REMAPPED SHELL COMMANDS
 # -----------------------
 
-alias ls="exa"
-alias ll="exa -l -snew"
-alias la="exa -a"
-alias tree="exa -T --icons"
-alias cat="bat"
-# alias cd="z" # zoxide
+alias ls="eza"
+alias ll="eza -l -snew"
+alias la="eza -a"
+alias tree="eza -T --icons"
+# alias cat="bat"
+# alias z="zoxide"
 
 # ------------------------
 # SHORTENED SHELL COMMANDS
@@ -57,3 +57,5 @@ alias code="code-insiders"
 alias \?\?="gh copilot suggest -t shell "
 alias git\?="gh copilot suggest -t git"
 alias gh\?="gh copilot suggest -t gh"
+
+alias supb='supabase --experimental branches --project-ref "$PROJECT_REF"'

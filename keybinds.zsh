@@ -8,7 +8,7 @@
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # Source fzf keybinds
 
 bindkey -s '^t' 'tnav\n' # find files in select folders
-bindkey -s '^g' 'tnav -r\n' # find files in select folders
+bindkey -s '^g' 'tnav -r\n' # change this to a function soon
 bindkey -s '^o' 'tnav -o\n' # find files in select folders
 
 bindkey -s '^h' 'cd ~\n' # go home
