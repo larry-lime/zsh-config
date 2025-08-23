@@ -10,11 +10,10 @@
 # PATH VARIABLES
 # --------------
 
-export PATH="$PATH:$HOME/.foundry/bin" # Foundry Path
 export PATH="$PATH:$HOME/.go" # Go Path
 export PATH="$PATH:$HOME/go/bin" # Go Binaries
 export PATH="$PATH:$HOME/.local/bin" # Go Path
-export PATH="$PATH:$HOME.local/share/bob/nvim-bin" # Bob path
+export PATH="$PATH:$HOME/.local/share/bob/nvim-bin" # Bob path
 export PATH="$PATH:/Users/lawrencelim/.sp1/bin"
 export PATH="$PATH:/Users/lawrencelim/.risc0/bin"
 export PATH="$PATH:$ANDROID_HOME/emulator"
@@ -36,8 +35,14 @@ export ANDROID_HOME=$HOME/Library/Android/sdk
 # -----------
 # DOCKER
 # -----------
+
 export DOCKER_HOST="unix://$XDG_CONFIG_HOME/colima/default/docker.sock" # mColima Docker Host
 
+# -----------
+# Package Managers
+# -----------
+
+export PATH="/Users/lawrencelim/.bun/bin:$PATH"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -48,8 +53,6 @@ esac
 # -----
 
 eval "$(/opt/homebrew/bin/brew shellenv)" # Homebrew Path
-# eval "$(starship init zsh)" # Starship Prompt
-eval $(opam env)
 eval "$(fnm env --use-on-cd)"
 . "$HOME/.cargo/env"
 source /Users/lawrencelim/.gemini-api-key

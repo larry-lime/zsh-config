@@ -45,6 +45,7 @@ alias so="source ~/.config/zsh/.zshrc"
 # ------------------
 
 alias nv="nvim"
+alias vim="nvim"
 alias ne="neovide"
 alias leet="nvim leetcode.nvim"
 alias t="tmux"
@@ -59,3 +60,7 @@ alias git\?="gh copilot suggest -t git"
 alias gh\?="gh copilot suggest -t gh"
 
 alias supb='supabase --experimental branches --project-ref "$PROJECT_REF"'
+alias gprcp='gh pr create --base preview'
+alias gprcs='gh pr create --base staging'
+alias gprcm='gh pr create --base main'
+alias gprmg='gh pr merge'
