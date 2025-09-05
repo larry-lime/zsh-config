@@ -56,3 +56,4 @@ eval "$(/opt/homebrew/bin/brew shellenv)" # Homebrew Path
 eval "$(fnm env --use-on-cd)"
 . "$HOME/.cargo/env"
 source /Users/lawrencelim/.gemini-api-key
+source "$HOME/.gemini-api-key"
