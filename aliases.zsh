@@ -64,3 +64,11 @@ alias gprcp='gh pr create --base preview'
 alias gprcs='gh pr create --base staging'
 alias gprcm='gh pr create --base main'
 alias gprmg='gh pr merge'
+alias c='claude'
+
+# --------------------
+# GIT WORKTREE MANAGEMENT
+# --------------------
+
+# Source the worktree management script
+source ~/.dotfiles/zsh/worktree.zsh

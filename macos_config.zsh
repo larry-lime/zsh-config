@@ -27,7 +27,7 @@ export DYLD_LIBRARY_PATH="/opt/homebrew/lib/"
 export EDITOR="nvim"
 export BROWSER="open -a Arc"
 export PNPM_HOME="/Users/lawrencelim/Library/pnpm"
-export TERMINAL_THEME="dark"
+export TERMINAL_THEME="light"
 export XDG_CONFIG_HOME="$HOME/.config"
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
 export ANDROID_HOME=$HOME/Library/Android/sdk
@@ -55,5 +55,6 @@ esac
 eval "$(/opt/homebrew/bin/brew shellenv)" # Homebrew Path
 eval "$(fnm env --use-on-cd)"
 . "$HOME/.cargo/env"
+
 source /Users/lawrencelim/.gemini-api-key
 source "$HOME/.gemini-api-key"
