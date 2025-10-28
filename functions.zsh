@@ -172,3 +172,17 @@ function docker_start ()
     sudo ln -s ~/Library/Containers/com.docker.docker/Data/docker.raw.sock /var/run/docker.sock
     DOCKER_HOST=unix:///var/run/docker.sock docker ps # test that it works using linked socket file
 }
+
+function ghpr (){
+base_branch="$1"
+title="$2"
+
+# Create PR non-interactively
+gh pr create --base "$base_branch" --title "$title" --fill
+
+# Find the latest PR from current branch
+pr_number=$(gh pr list --state open --head "$(git branch --show-current)" --json number -q '.[0].number')
+
+# Wait for CI checks to finish
+gh pr checks --watch "$pr_number"
+}

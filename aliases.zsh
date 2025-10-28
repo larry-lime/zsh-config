@@ -59,11 +59,6 @@ alias \?\?="gh copilot suggest -t shell "
 alias git\?="gh copilot suggest -t git"
 alias gh\?="gh copilot suggest -t gh"
 
-alias supb='supabase --experimental branches --project-ref "$PROJECT_REF"'
-alias gprcp='gh pr create --base preview'
-alias gprcs='gh pr create --base staging'
-alias gprcm='gh pr create --base main'
-alias gprmg='gh pr merge'
 alias c='claude'
 
 # --------------------
