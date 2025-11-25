@@ -61,14 +61,38 @@ function wt() {
     esac
 }
 
+function _wt_is_bare_setup() {
+    local git_common_dir=$(git rev-parse --git-common-dir 2>/dev/null)
+    git_common_dir=$(cd "$git_common_dir" 2>/dev/null && pwd)
+
+    if [[ "$(basename "$git_common_dir")" == ".bare" ]]; then
+        return 0
+    fi
+    if [[ "$(git rev-parse --is-bare-repository 2>/dev/null)" == "true" ]]; then
+        return 0
+    fi
+    return 1
+}
+
+function _wt_get_root() {
+    if _wt_is_bare_setup; then
+        local git_common_dir=$(git rev-parse --git-common-dir 2>/dev/null)
+        git_common_dir=$(cd "$git_common_dir" 2>/dev/null && pwd)
+        dirname "$git_common_dir"
+    else
+        git rev-parse --show-toplevel 2>/dev/null
+    fi
+}
+
 function _wt_create() {
     local branch_name="$1"
     local worktree_path=""
 
-    # Get the repository root and name
-    local repo_root=$(git rev-parse --show-toplevel)
+    # Get the repository root (handles bare repos)
+    local repo_root=$(_wt_get_root)
     local repo_name=$(basename "$repo_root")
     local parent_dir=$(dirname "$repo_root")
+    local is_bare=$(_wt_is_bare_setup && echo "true" || echo "false")
 
     # Fetch latest changes
     echo "Fetching latest changes..."
@@ -108,8 +132,14 @@ function _wt_create() {
     # Clean up branch name (remove origin/ prefix if present)
     branch_name=${branch_name#origin/}
 
-    # Generate worktree path
-    worktree_path="$parent_dir/${repo_name}-${branch_name//\//-}"
+    # Generate worktree path based on repo type
+    if [[ "$is_bare" == "true" ]]; then
+        # For bare repos: create worktree as subdirectory with branch name
+        worktree_path="$repo_root/${branch_name//\//-}"
+    else
+        # For regular repos: create as sibling directory
+        worktree_path="$parent_dir/${repo_name}-${branch_name//\//-}"
+    fi
 
     # Check if worktree already exists
     if [[ -d "$worktree_path" ]]; then
@@ -192,10 +222,11 @@ function _wt_remove() {
     fi
 
     # Get all worktrees except the main one
+    local worktree_root=$(_wt_get_root)
     local worktrees=$(git worktree list --porcelain |
         grep "^worktree" |
         cut -d' ' -f2- |
-        grep -v "$(git rev-parse --show-toplevel)$")
+        grep -v "^${worktree_root}$")
 
     if [[ -z "$worktrees" ]]; then
         echo "No additional worktrees to remove"

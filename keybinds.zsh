@@ -8,6 +8,8 @@
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # Source fzf keybinds
 bindkey -s '^a' '**	' # fzf autocomplee
 
+# bindkey '^a' fzf-cd-widget
+
 bindkey -s '^h' 'cd ~\n' # go home
 bindkey -s '^b' 'cd ..\n' # go to previous directory
 

@@ -156,7 +156,7 @@ function git-assist ()
 
 function cd ()
 {
-  source /usr/bin/cd "$1"
+  builtin cd "$@" || return
   eza
   # echo $(pwd) | tr "\n" " " | pbcopy
 }
@@ -174,15 +174,40 @@ function docker_start ()
 }
 
 function ghpr (){
-base_branch="$1"
-title="$2"
+# Parse arguments
+draft_flag=""
+base_branch=""
+title=""
 
-# Create PR non-interactively
-gh pr create --base "$base_branch" --title "$title" --fill
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --draft)
+            draft_flag="--draft"
+            shift
+            ;;
+        *)
+            if [[ -z "$base_branch" ]]; then
+                base_branch="$1"
+            elif [[ -z "$title" ]]; then
+                title="$1"
+            fi
+            shift
+            ;;
+    esac
+done
+
+# Create PR non-interactively (with optional draft flag)
+gh pr create --base "$base_branch" --title "$title" $draft_flag --fill
 
 # Find the latest PR from current branch
 pr_number=$(gh pr list --state open --head "$(git branch --show-current)" --json number -q '.[0].number')
 
 # Wait for CI checks to finish
 gh pr checks --watch "$pr_number"
+}
+
+
+function kp() {
+  port=$1
+  kill $(lsof -t -i:$port)
 }
