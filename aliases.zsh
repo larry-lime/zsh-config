@@ -60,10 +60,3 @@ alias git\?="gh copilot suggest -t git"
 alias gh\?="gh copilot suggest -t gh"
 
 alias c='claude'
-
-# --------------------
-# GIT WORKTREE MANAGEMENT
-# --------------------
-
-# Source the worktree management script
-source ~/.dotfiles/zsh/worktree.zsh
