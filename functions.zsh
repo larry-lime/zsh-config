@@ -211,3 +211,21 @@ function kp() {
   port=$1
   kill $(lsof -t -i:$port)
 }
+
+function ssh() {
+    if [[ -n "$TMUX" ]]; then
+        local host="${@: -1}"
+        host="${host##*@}"
+        local display_name="$host"
+        case "$host" in
+            prod)  display_name="PROD-1-SERVER" ;;
+            prod2) display_name="PROD-2-SERVER" ;;
+            prev)  display_name="PREV-SERVER" ;;
+        esac
+        tmux rename-window "$display_name"
+        command ssh "$@"
+        tmux set-window-option automatic-rename on
+    else
+        command ssh "$@"
+    fi
+}
