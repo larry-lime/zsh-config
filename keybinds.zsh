@@ -8,6 +8,8 @@
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # Source fzf keybinds
 bindkey -s '^a' '**	' # fzf autocomplee
 
+bindkey -s '^g' 'wt\n' # worktree switcher
+
 # bindkey '^a' fzf-cd-widget
 
 bindkey -s '^h' 'cd ~\n' # go home
