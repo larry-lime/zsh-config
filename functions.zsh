@@ -57,55 +57,6 @@ function kj ()
     kill %$1
 }
 
-function take() {
-    mkdir -p -- "$1" &&
-    cd -P -- "$1"
-    echo $(pwd) | tr "\n" " " | clip.exe
-    CLIP=$(pwd)
-}
-
-function ii() {
-    FILE=$@
-    CHECK="${FILE##*.}"
-    if [[ ! -f $1 ]] then # Create the file if it doesn't exist
-        touch $1
-    fi
-    # Add custom defaults
-    if [ "$CHECK" = "md" ]; then
-        nvim $FILE
-    elif [ "$CHECK" = "pdf" ]; then
-        SumatraPDF.exe $FILE
-    elif [ "$CHECK" = "py" ]; then
-        nvim $FILE
-    elif [ "$CHECK" = "txt" ]; then
-        nvim $FILE
-        # Else use system defaults
-    else
-        powershell.exe -c "ii $FILE"
-    fi
-}
-
-function tp() {
-    if [[ $1 ]]; then
-        open $1 -a Typora.app
-    else
-        open . -a Typora.app
-    fi
-}
-
-function ppy() {
-    powershell.exe -c "python3 $1"
-}
-
-function ccont() {
-    if [ -f "$1" ]; then
-        CLIP=$(cat $1)
-        echo $CLIP | tr "\n" " " | clip.exe
-    else
-        echo "File does not exist"
-    fi
-}
-
 # FIXME: So this works on linux
 function cpath() {
     # use pbcopy if on mac and xclip if on linux
@@ -124,36 +75,6 @@ function cpath() {
       fi
   }
 
-function create_latex_homework()
-{
-    if [[ -z $1 ]]; then
-        cp ~/.dotfiles/.local/share/template.tex .
-    else
-        cp ~/.dotfiles/.local/share/template.tex $1
-    fi
-}
-
-function trash ()
-{
-    if [[ -z $@ ]]; then
-        cd $HOME/.Trash/
-    else
-        mv $@ $HOME/.Trash/
-    fi
-}
-
-function what-the-shell ()
-{
-    source $HOME/.dotfiles/github-cli/lazy-load.sh
-    copilot_what-the-shell $@
-}
-
-function git-assist ()
-{
-    source $HOME/.dotfiles/github-cli/lazy-load.sh
-    copilot_git-assist $@
-}
-
 function cd ()
 {
   builtin cd "$@" || return
@@ -161,49 +82,58 @@ function cd ()
   # echo $(pwd) | tr "\n" " " | pbcopy
 }
 
-function gh-assist ()
-{
-    source $HOME/.dotfiles/github-cli/lazy-load.sh
-    copilot_what-the-shell $@
-}
-
-function docker_start ()
-{
-    sudo ln -s ~/Library/Containers/com.docker.docker/Data/docker.raw.sock /var/run/docker.sock
-    DOCKER_HOST=unix:///var/run/docker.sock docker ps # test that it works using linked socket file
-}
-
 function ghpr (){
-# Parse arguments
-draft_flag=""
-base_branch=""
-title=""
+    # Parse arguments
+    draft_flag=""
+    base_branch=""
+    title=""
 
-while [[ $# -gt 0 ]]; do
-    case "$1" in
-        --draft)
-            draft_flag="--draft"
-            shift
-            ;;
-        *)
-            if [[ -z "$base_branch" ]]; then
-                base_branch="$1"
-            elif [[ -z "$title" ]]; then
-                title="$1"
-            fi
-            shift
-            ;;
-    esac
-done
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --draft)
+                draft_flag="--draft"
+                shift
+                ;;
+            *)
+                if [[ -z "$base_branch" ]]; then
+                    base_branch="$1"
+                elif [[ -z "$title" ]]; then
+                    title="$1"
+                fi
+                shift
+                ;;
+        esac
+    done
 
-# Create PR non-interactively (with optional draft flag)
-gh pr create --base "$base_branch" --title "$title" $draft_flag --fill
+    current_branch=$(git branch --show-current)
 
-# Find the latest PR from current branch
-pr_number=$(gh pr list --state open --head "$(git branch --show-current)" --json number -q '.[0].number')
+    # Auto-detect base branch if not provided
+    # Branch promotion flow: feature -> preview -> staging -> main
+    if [[ -z "$base_branch" ]]; then
+        case "$current_branch" in
+            staging) base_branch="main" ;;
+            preview) base_branch="staging" ;;
+            *)       base_branch="preview" ;;
+        esac
+    fi
 
-# Wait for CI checks to finish
-gh pr checks --watch "$pr_number"
+    # Auto-set title and skip description for promotion PRs
+    if [[ "$current_branch" == "preview" && "$base_branch" == "staging" ]]; then
+        title="Merge preview into staging"
+        gh pr create --base "$base_branch" --title "$title" $draft_flag --body ""
+    elif [[ "$current_branch" == "staging" && "$base_branch" == "main" ]]; then
+        title="Merge staging into main"
+        gh pr create --base "$base_branch" --title "$title" $draft_flag --body ""
+    else
+        # Feature branch to preview - requires user-provided title and description
+        gh pr create --base "$base_branch" --title "$title" $draft_flag --fill
+    fi
+
+    # Find the latest PR from current branch
+    pr_number=$(gh pr list --state open --head "$current_branch" --json number -q '.[0].number')
+
+    # Wait for CI checks to finish
+    gh pr checks --watch "$pr_number"
 }
 
 
