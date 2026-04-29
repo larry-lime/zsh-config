@@ -128,12 +128,6 @@ function ghpr (){
         # Feature branch to preview - requires user-provided title and description
         gh pr create --base "$base_branch" --title "$title" $draft_flag --fill
     fi
-
-    # Find the latest PR from current branch
-    pr_number=$(gh pr list --state open --head "$current_branch" --json number -q '.[0].number')
-
-    # Wait for CI checks to finish
-    gh pr checks --watch "$pr_number"
 }
 
 
