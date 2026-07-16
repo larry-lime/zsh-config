@@ -53,8 +53,10 @@ esac
 # -----
 
 eval "$(/opt/homebrew/bin/brew shellenv)" # Homebrew Path
-eval "$(fnm env --use-on-cd)"
 . "$HOME/.cargo/env"
-
-source /Users/lawrencelim/.gemini-api-key
-source "$HOME/.gemini-api-key"
+export NVM_DIR="$HOME/.config/nvm"
+# fnm
+FNM_PATH="/opt/homebrew/opt/fnm/bin"
+if [ -d "$FNM_PATH" ]; then
+  eval "$(fnm env --shell zsh)"
+fi
