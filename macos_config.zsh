@@ -25,7 +25,7 @@ export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
 export DYLD_LIBRARY_PATH="/opt/homebrew/lib/"
 export EDITOR="nvim"
-export BROWSER="open -a Arc"
+export BROWSER="open -a 'Google Chrome'"
 export PNPM_HOME="/Users/lawrencelim/Library/pnpm"
 export TERMINAL_THEME="dark"
 export XDG_CONFIG_HOME="$HOME/.config"
